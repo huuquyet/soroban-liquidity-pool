@@ -8,7 +8,9 @@ tasks:
   - name: Install soroban & dependencies
     init: |
       npm run setup
-      npm install
+      rustup update
+      cargo update
+      cargo fmt --all
     command: npm run dev
 
 
