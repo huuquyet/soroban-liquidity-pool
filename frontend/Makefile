@@ -2,7 +2,7 @@
 
 
 help:
-	@echo "Usage: make [build|start|start_dev|test|storybook|build_storybook|lint|format_code"
+	@echo "Usage: make [build|start|start_dev|test|storybook|build_storybook|lint|format_code]"
 	@echo ""
 	@echo "Usage:"
 	@echo "  make build  	        Builds the frontend for production and copies it to the dist folder"

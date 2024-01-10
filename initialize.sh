@@ -20,9 +20,14 @@ fi
 
 if [[ -f "./target/bin/soroban" ]]; then
   echo "Using soroban binary from ./target/bin"
+elif ! command -v <the_command> &> /dev/null; then
+  echo "Using soroban cli"
 else
   echo "Building pinned soroban binary"
-  cargo install_soroban
+  # cargo install_soroban
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  rustup target add wasm32-unknown-unknown
+  cargo install --locked --version 20.1.1 soroban-cli
 fi
 
 if [[ "$SOROBAN_RPC_HOST" == "" ]]; then
@@ -177,10 +182,10 @@ echo "Share ID: $SHARE_ID"
 
 
 echo "Generating bindings"
-target/bin/soroban contract bindings typescript --network $NETWORK --contract-id $ABUNDANCE_A_ID --output-dir ".soroban/contracts/token-a" --overwrite
-target/bin/soroban contract bindings typescript --network $NETWORK --contract-id $ABUNDANCE_B_ID --output-dir ".soroban/contracts/token-b" --overwrite
-target/bin/soroban contract bindings typescript --network $NETWORK --contract-id $SHARE_ID --output-dir ".soroban/contracts/share-token" --overwrite
-target/bin/soroban contract bindings typescript --network $NETWORK --contract-id $LIQUIDITY_POOL_ID --output-dir ".soroban/contracts/liquidity-pool" --overwrite
+soroban contract bindings typescript --network $NETWORK --contract-id $ABUNDANCE_A_ID --output-dir ".soroban/contracts/token-a" --overwrite
+soroban contract bindings typescript --network $NETWORK --contract-id $ABUNDANCE_B_ID --output-dir ".soroban/contracts/token-b" --overwrite
+soroban contract bindings typescript --network $NETWORK --contract-id $SHARE_ID --output-dir ".soroban/contracts/share-token" --overwrite
+soroban contract bindings typescript --network $NETWORK --contract-id $LIQUIDITY_POOL_ID --output-dir ".soroban/contracts/liquidity-pool" --overwrite
 
 echo "Done"
 
