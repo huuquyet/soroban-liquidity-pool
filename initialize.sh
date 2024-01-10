@@ -20,14 +20,14 @@ fi
 
 if [[ -f "./target/bin/soroban" ]]; then
   echo "Using soroban binary from ./target/bin"
-elif ! command -v <the_command> &> /dev/null; then
+elif command -v soroban &> /dev/null; then
   echo "Using soroban cli"
 else
   echo "Building pinned soroban binary"
   # cargo install_soroban
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   rustup target add wasm32-unknown-unknown
-  cargo install --locked --version 20.1.1 soroban-cli
+  cargo install --locked --version 20.1.1 soroban-cli --debug --features opt
 fi
 
 if [[ "$SOROBAN_RPC_HOST" == "" ]]; then

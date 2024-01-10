@@ -5,8 +5,10 @@
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 tasks:
-  - before: ./initialize.sh ${NETWORK:-futurenet}
-    init: cd frontend && npm i
+  - name: Install soroban & dependencies
+    init: |
+      npm run setup
+      npm install
     command: npm run start
 
 

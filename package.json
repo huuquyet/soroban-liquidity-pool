@@ -1,0 +1,13 @@
+{
+  "name": "soroban-liquidity-pool",
+  "version": "0.1.0",
+  "description": "Soroban Liquidity pool example dApp",
+  "private": "true",
+  "workspaces": ["./frontend"],
+  "scripts": {
+    "clean": "git clean -xdf",
+    "setup": "./initialize.sh ${NETWORK:-futurenet}",
+    "reset": "npm run clean && npm run setup",
+    "dev": "cd frontend && npm run start"
+  }
+}
