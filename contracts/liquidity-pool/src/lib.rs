@@ -155,7 +155,6 @@ contractmeta!(
     val = "Constant product AMM with a .3% swap fee"
 );
 
-
 pub trait LiquidityPoolTrait {
     // Sets the token contract addresses for this pool
     fn initialize(e: Env, token_wasm_hash: BytesN<32>, token_a: Address, token_b: Address);
@@ -353,8 +352,8 @@ impl LiquidityPoolTrait for LiquidityPool {
 
     fn balance(e: Env, user: Address) -> i128 {
         e.storage()
-        .instance()
-        .get::<_, i128>(&DataKey::TotalShares) 
-        .unwrap_or(0)
+            .instance()
+            .get::<_, i128>(&DataKey::TotalShares)
+            .unwrap_or(0)
     }
 }
