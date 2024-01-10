@@ -9,6 +9,6 @@ tasks:
     init: |
       npm run setup
       npm install
-    command: npm run start
+    command: npm run dev
 
 

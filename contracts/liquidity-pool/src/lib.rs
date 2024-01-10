@@ -350,7 +350,7 @@ impl LiquidityPoolTrait for LiquidityPool {
         get_total_shares(&e)
     }
 
-    fn balance(e: Env, user: Address) -> i128 {
+    fn balance(e: Env, _user: Address) -> i128 {
         e.storage()
             .instance()
             .get::<_, i128>(&DataKey::TotalShares)

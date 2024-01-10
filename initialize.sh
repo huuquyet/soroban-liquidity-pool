@@ -160,7 +160,6 @@ TOKEN_WASM_HASH="$(soroban contract install \
 echo "Initialize the liquidity pool contract"
 soroban contract invoke \
   $ARGS \
-  --wasm $LIQUIDITY_POOL_WASM \
   --id "$LIQUIDITY_POOL_ID" \
   -- \
   initialize \
@@ -172,7 +171,6 @@ soroban contract invoke \
 echo "Getting the share id"
 SHARE_ID="$(soroban contract invoke \
   $ARGS \
-  --wasm $LIQUIDITY_POOL_WASM \
   --id "$LIQUIDITY_POOL_ID" \
   -- \
   share_id
