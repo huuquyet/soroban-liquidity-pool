@@ -1,11 +1,7 @@
-import React, { FunctionComponent, useState } from 'react'
-
+import { FunctionComponent, useState } from 'react'
 import styles from './styles.module.scss'
-
 import { LoadingButton } from '@mui/lab';
 import { IMintFunction } from 'interfaces/soroban/token';
-import { Address } from '../../../shared/contracts';
-
 
 interface IMintButton {
   account: string;

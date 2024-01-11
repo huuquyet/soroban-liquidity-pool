@@ -1,10 +1,8 @@
 import * as Sentry from '@sentry/react'
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-
 import reportWebVitals from './config/reportWebVitals'
 import App from 'app/core/App'
-
 import './index.css'
 
 Sentry.init({

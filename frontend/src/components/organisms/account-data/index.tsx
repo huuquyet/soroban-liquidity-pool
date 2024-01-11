@@ -1,11 +1,8 @@
 import { FunctionComponent } from 'react'
-
 import { ConnectButton } from 'components/atoms'
 import { TokenAIcon, TokenBIcon, TokenLPIcon } from 'components/icons'
 import { Balance } from 'components/molecules'
-
 import { IToken } from 'interfaces/soroban/token'
-
 import {
   tokenAContract,
   tokenBContract

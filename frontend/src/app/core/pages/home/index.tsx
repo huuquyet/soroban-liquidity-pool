@@ -1,18 +1,13 @@
 import React from 'react'
-
 import classNames from 'classnames'
 import { Utils } from 'shared/utils'
-
 import { TokenAIcon, TokenBIcon } from 'components/icons'
 import { NetworkData } from 'components/molecules'
 import { LiquidityActions, AccountData } from 'components/organisms'
-
 import { useAccount } from 'app/core/hooks/useAccount'
 import { IReserves } from 'interfaces/soroban/liquidityPool'
 import { IToken } from 'interfaces/soroban/token'
-
 import {
-  Address,
   tokenAContract,
   tokenBContract,
   shareTokenContract,
@@ -53,18 +48,18 @@ const Home = (): JSX.Element => {
     ]).then(fetched => {
       setTokenA(prevTokenA => ({
         ...prevTokenA,
-        symbol: fetched[0],
-        decimals: fetched[1],
+        symbol: fetched[0].result,
+        decimals: fetched[1].result,
       }))
       setTokenB(prevTokenB => ({
         ...prevTokenB,
-        symbol: fetched[2],
-        decimals: fetched[3],
+        symbol: fetched[2].result,
+        decimals: fetched[3].result,
       }))
       setShareToken(prevShareToken => ({
         ...prevShareToken,
-        symbol: fetched[4],
-        decimals: fetched[5],
+        symbol: fetched[4].result,
+        decimals: fetched[5].result,
       }))
     })
   }, [])
@@ -75,10 +70,10 @@ const Home = (): JSX.Element => {
       liquidityPoolContract.getShares(),
     ]).then(fetched => {
       setReserves({
-        reservesA: fetched[0][0],
-        reservesB: fetched[0][1],
+        reservesA: fetched[0].result[0],
+        reservesB: fetched[0].result[1],
       })
-      setTotalShares(fetched[1])
+      setTotalShares(fetched[1].result)
     })
     if (account?.address) {
       Promise.all([
@@ -88,15 +83,15 @@ const Home = (): JSX.Element => {
       ]).then(fetched => {
         setTokenA(prevTokenA => ({
           ...prevTokenA,
-          balance: fetched[0],
+          balance: fetched[0].result,
         }))
         setTokenB(prevTokenB => ({
           ...prevTokenB,
-          balance: fetched[1],
+          balance: fetched[1].result,
         }))
         setShareToken(prevShareToken => ({
           ...prevShareToken,
-          balance: fetched[2],
+          balance: fetched[2].result,
         }))
       })
     }

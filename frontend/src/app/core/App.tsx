@@ -1,8 +1,5 @@
-import React from 'react'
-
 import { AppProvider } from './context/appContext'
 import { CoreRouter } from 'app/core/routes'
-
 import ErrorBoundary from './error-boundary'
 
 const App = (): JSX.Element => (

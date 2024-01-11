@@ -1,7 +1,4 @@
-import React from 'react'
-
 import classNames from 'classnames'
-
 import { IconNames } from './iconNames'
 
 interface IIconProps {

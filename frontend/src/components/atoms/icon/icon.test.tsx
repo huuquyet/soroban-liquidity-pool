@@ -1,5 +1,4 @@
 import { render, screen } from 'app/core/tests/utils'
-
 import { Icon, IconNames } from '.'
 
 test('Display button label', () => {

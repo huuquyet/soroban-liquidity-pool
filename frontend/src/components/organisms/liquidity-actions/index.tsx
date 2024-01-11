@@ -1,7 +1,5 @@
 import { useState, FunctionComponent, Dispatch, SetStateAction } from 'react'
-
 import styles from './styles.module.scss'
-
 import { Deposit, Swap, Withdraw } from "components/molecules"
 import { IToken } from "interfaces/soroban/token"
 import { IReserves } from "interfaces/soroban/liquidityPool"

@@ -5,11 +5,8 @@
 // was using it, it doesn't type it correctly. This is a temporary workaround
 // while we don't update to v6
 // TODO: update react-router-dom to v6
-import React from 'react'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
-
 import { isAuthentication } from 'app/core/auth'
-
 import ModuleRoutes from './module-routes'
 import { coreRoutes } from './routes'
 

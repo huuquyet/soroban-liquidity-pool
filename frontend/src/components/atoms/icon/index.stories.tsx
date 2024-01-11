@@ -1,6 +1,4 @@
 import { Story, Meta } from '@storybook/react'
-import React from 'react'
-
 import { Icon, IconNames, IIconProps } from '.'
 
 export default {

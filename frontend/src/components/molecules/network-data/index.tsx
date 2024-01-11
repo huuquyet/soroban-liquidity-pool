@@ -1,8 +1,6 @@
-import React, { FunctionComponent } from 'react'
-
+import { FunctionComponent } from 'react'
 import { ConnectButton } from 'components/atoms'
 import { DisconnectButton } from 'components/atoms/disconnect-button'
-
 import styles from './styles.module.scss'
 
 interface INetworkDataProps {

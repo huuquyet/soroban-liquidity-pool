@@ -1,12 +1,8 @@
 import React, { FunctionComponent } from 'react'
-
 import styles from './styles.module.scss'
-
-
 import { Utils } from 'shared/utils'
 import { IMintFunction, IToken } from "interfaces/soroban/token"
 import { MintButton } from 'components/atoms';
-
 
 interface IBalance {
     account: string;

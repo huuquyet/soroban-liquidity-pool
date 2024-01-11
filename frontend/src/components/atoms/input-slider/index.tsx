@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-
 import Slider from 'react-input-slider';
-
 import styles from './styles.module.scss'
 
 interface IInputSliderProps {

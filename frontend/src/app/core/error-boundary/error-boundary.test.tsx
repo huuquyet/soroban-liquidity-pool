@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import ErrorBoundary, { IErrorBoundaryProps } from '.'
 import { render, screen, fireEvent } from '../tests/utils'
 

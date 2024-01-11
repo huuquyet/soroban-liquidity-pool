@@ -1,7 +1,5 @@
 import React from 'react'
-
 import CurrencyFormat from 'react-currency-format'
-
 import { Icon, IconNames, Tooltip } from "components/atoms"
 import styles from './styles.module.scss'
 

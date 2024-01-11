@@ -1,15 +1,12 @@
 import React, { FunctionComponent, useState } from 'react'
-
 import { LoadingButton } from '@mui/lab';
-
 import styles from './styles.module.scss'
 import { IToken } from "interfaces/soroban/token"
 import { IReserves } from "interfaces/soroban/liquidityPool"
 import { Icon, IconNames, InputPercentage, InputSlider, Tooltip } from "components/atoms"
 import { Utils } from 'shared/utils';
 import { ErrorText } from 'components/atoms/error-text';
-import { Address, liquidityPoolContract } from '../../../shared/contracts'
-
+import { liquidityPoolContract } from '../../../shared/contracts'
 
 interface IFormValues {
     sharePercent: string;

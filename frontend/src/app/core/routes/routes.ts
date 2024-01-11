@@ -1,5 +1,4 @@
 import Home from 'app/core/pages/home'
-
 import { IAppRoute } from './types'
 
 export const coreRoutes: IAppRoute[] = [

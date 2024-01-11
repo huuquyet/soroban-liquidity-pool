@@ -1,13 +1,11 @@
 import React, { FunctionComponent, useState } from 'react'
-
 import { LoadingButton } from '@mui/lab';
-
 import styles from './styles.module.scss'
 import { IToken } from "interfaces/soroban/token"
 import { InputCurrency, InputPercentage } from "components/atoms"
 import { TokenAIcon, TokenBIcon } from 'components/icons';
 import { ErrorText } from 'components/atoms/error-text';
-import { Address, liquidityPoolContract } from '../../../shared/contracts'
+import { liquidityPoolContract } from '../../../shared/contracts'
 
 
 interface IFormValues {
