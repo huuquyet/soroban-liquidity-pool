@@ -25,6 +25,7 @@
     "web-vitals": "^3.5.1"
   },
   "devDependencies": {
+    "@stellar/stellar-sdk": "^11.2.0",
     "@storybook/addon-a11y": "^7.6.7",
     "@storybook/addon-docs": "^7.6.7",
     "@storybook/addon-essentials": "^7.6.7",

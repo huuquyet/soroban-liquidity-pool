@@ -18,7 +18,8 @@ const MintButton: FunctionComponent<IMintButton> = ({ account, decimals, mint, o
     <LoadingButton
       onClick={async (): Promise<void> => {
         setSubmitting(true)
-        await mint({ to: (account), amount })
+        const tx = await mint({ to: (account), amount })
+        await tx.signAndSend()
         setSubmitting(false)
         onUpdate()
       }}

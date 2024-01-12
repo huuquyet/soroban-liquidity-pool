@@ -56,12 +56,13 @@ const Withdraw: FunctionComponent<IWithdraw> = ({ account, tokenA, tokenB, share
         setSubmitting(true)
         setError(false)
         try {
-            await liquidityPoolContract.withdraw({
+            const tx = await liquidityPoolContract.withdraw({
                 to: (account),
                 share_amount: shareAmount,
                 min_a: tokenATotalWithSlippage,
                 min_b: tokenBTotalWithSlippage,
             }, { fee: 1000000 })
+            await tx.signAndSend()
         } catch (error) {
             console.error(error);
             setError(true)
