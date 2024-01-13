@@ -1,5 +1,3 @@
-import { Address } from '../../shared/contracts'
-
 interface IToken {
     symbol: string;
     decimals: number;

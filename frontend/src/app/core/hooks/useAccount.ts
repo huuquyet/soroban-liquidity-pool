@@ -26,10 +26,6 @@ const FUTURENET_DETAILS = {
   networkPassphrase: 'Test SDF Future Network ; October 2022',
 }
 
-const ERRORS = {
-  WALLET_CONNECTION_REJECTED: 'Wallet connection rejected',
-}
-
 const STORAGE_WALLET_KEY = 'wallet'
 
 const allowedWallets = [
@@ -78,7 +74,7 @@ export function useAccount(): UseAccountType {
     } catch (error) {
       localStorage.removeItem(STORAGE_WALLET_KEY)
       setIsLoading(false)
-      console.error(ERRORS.WALLET_CONNECTION_REJECTED)
+      // console.error(`Wallet connection rejected error: ${error}`)
     }
   }
 

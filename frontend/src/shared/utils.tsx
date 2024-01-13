@@ -1,4 +1,4 @@
-export function formatAmount(undivided: BigInt, decimals: number): string {
+export function formatAmount(undivided: bigint, decimals: number): string {
     let n;
 
     if (undivided.valueOf() < BigInt(Number.MAX_SAFE_INTEGER)) {

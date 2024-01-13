@@ -64,7 +64,7 @@ const Withdraw: FunctionComponent<IWithdraw> = ({ account, tokenA, tokenB, share
             }, { fee: 1000000 })
             await tx.signAndSend()
         } catch (error) {
-            console.error(error);
+            // console.error(error);
             setError(true)
         }
         setSubmitting(false);

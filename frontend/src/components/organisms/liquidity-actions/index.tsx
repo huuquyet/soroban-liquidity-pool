@@ -17,9 +17,9 @@ interface ILiquidityActions {
 const LiquidityActions: FunctionComponent<ILiquidityActions> = ({ account, tokenA, tokenB, shareToken, reserves, totalShares, onUpdate }) => {
   const [activeTab, setActiveTab] = useState("Deposit");
 
-  const handleChangeActiveTab = (tab: string): void => {
-    setActiveTab(tab);
-  };
+  // const handleChangeActiveTab = (tab: string): void => {
+  //   setActiveTab(tab);
+  // };
 
   return (
     <div className={styles.card}>

@@ -72,7 +72,7 @@ const Swap: FunctionComponent<ISwap> = ({ account, tokenA, tokenB, reserves, onU
             }, { fee: 100000 })
             await tx.signAndSend()
         } catch (error) {
-            console.error(error);
+            // console.error(error);
             setError(true)
         }
         setSubmitting(false);
