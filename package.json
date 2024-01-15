@@ -64,7 +64,7 @@
     "vite-tsconfig-paths": "^4.2.3"
   },
   "scripts": {
-    "start": "vite",
+    "start": "vite --host",
     "start:dev": "npm start",
     "start:staging": "npm start -- --mode staging",
     "build": "tsc && vite build",
