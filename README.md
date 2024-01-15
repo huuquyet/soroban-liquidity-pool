@@ -116,7 +116,7 @@ docker run --rm -it \
 Frontend
 --------
 
-Now that you're running the backend, go to the `frontend` folder and run the development server:
+Now that you're running the backend, and run the development server:
 
     make setup && make start_dev
 
@@ -156,3 +156,20 @@ Withdraw
 - Users have the option to burn their Pool Share tokens to withdraw a specific quantity of tokens from the liquidity pool.
 - The amount of each token to be withdrawn is determined based on the proportion represented by the burned Pool Share tokens. As a result, users may receive a different amount than what they initially deposited, reflecting variations in the pool's composition.
 - Prior to confirming the transaction, users are presented with the minimum values they will receive for each token. They can customize these values using the Max Slippage factor. If the adjusted values fall below the required minimum, the transaction will fail.
+
+## Storybook
+
+This boilerplate already has the storybook configured with some addons.
+
+- The storybook's configs are in the `.storybook` directory.
+
+### How to run it
+
+- To run the storybook at development version, you can use the command:
+
+  - `npm run storybook`
+  - The command above must open your browser at [http://localhost:6006]
+
+- How to build it for production:
+  - `npm run build-storybook`
+  - A directory with name `storybook-static` will be generated with all storybook statics.

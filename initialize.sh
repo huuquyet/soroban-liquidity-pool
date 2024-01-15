@@ -67,7 +67,7 @@ soroban config network add \
   --rpc-url "$SOROBAN_RPC_URL" \
   --network-passphrase "$SOROBAN_NETWORK_PASSPHRASE" "$NETWORK"
 
-echo "{ \"network\": \"$NETWORK\", \"rpcUrl\": \"$SOROBAN_RPC_URL\", \"networkPassphrase\": \"$SOROBAN_NETWORK_PASSPHRASE\" }" > ./frontend/src/shared/config.json
+echo "{ \"network\": \"$NETWORK\", \"rpcUrl\": \"$SOROBAN_RPC_URL\", \"networkPassphrase\": \"$SOROBAN_NETWORK_PASSPHRASE\" }" > ./src/shared/config.json
 
 if !(soroban config identity ls | grep token-admin 2>&1 >/dev/null); then
   echo Create the token-admin identity
@@ -85,10 +85,12 @@ soroban config identity fund token-admin --network $NETWORK
 
 ARGS="--network $NETWORK --source token-admin"
 
-echo "Building contracts"
-soroban contract build
-echo "Optimizing contracts"
+echo "Building token contract and optimizing contract"
+soroban contract build --package soroban-token-contract
 soroban contract optimize --wasm $TOKEN_PATH".wasm"
+
+echo "Building liquidity pool contract and optimizing contract"
+soroban contract build --package soroban-liquidity-pool-contract
 soroban contract optimize --wasm $LIQUIDITY_POOL_PATH".wasm"
 
 echo Deploy the abundance token A contract

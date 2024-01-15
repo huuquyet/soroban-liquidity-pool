@@ -45,3 +45,6 @@ lint: setup
 
 format-code: setup
 	npm run prettier
+
+all:
+	test
