@@ -1,6 +1,6 @@
 interface IReserves {
-    reservesA: bigint;
-    reservesB: bigint;
+  reservesA: bigint
+  reservesB: bigint
 }
 
 export type { IReserves }

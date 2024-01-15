@@ -4,16 +4,8 @@ export interface IErrorTextProps {
   text: string
 }
 
-const ErrorText = ({
-  text,
-}: IErrorTextProps): JSX.Element => {
-  return (
-    <span
-      className={styles.errorText}
-    >
-      {text}
-    </span>
-  )
+const ErrorText = ({ text }: IErrorTextProps): JSX.Element => {
+  return <span className={styles.errorText}>{text}</span>
 }
 
 export { ErrorText }

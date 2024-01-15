@@ -54,7 +54,7 @@ export function useAccount(): UseAccountType {
     new StellarWalletsKit({
       network: selectedNetwork.networkPassphrase as WalletNetwork,
       selectedWallet: WalletType.FREIGHTER,
-    })
+    }),
   )
 
   const getWalletAddress = async (type: WalletType): Promise<void> => {
@@ -88,7 +88,7 @@ export function useAccount(): UseAccountType {
   useEffect(() => {
     const storedWallet = localStorage.getItem(STORAGE_WALLET_KEY)
     const walletType = Object.values(WalletType).includes(
-      storedWallet as WalletType
+      storedWallet as WalletType,
     )
 
     if (!walletAddress && storedWallet && walletType) {

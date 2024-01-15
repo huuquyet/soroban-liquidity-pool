@@ -1,7 +1,8 @@
 @font-face {
   font-family: 'ckl-icon';
   src: url('fonts/ckl-icon.eot?yo1p1x');
-  src: url('fonts/ckl-icon.eot?yo1p1x#iefix') format('embedded-opentype'),
+  src:
+    url('fonts/ckl-icon.eot?yo1p1x#iefix') format('embedded-opentype'),
     url('fonts/ckl-icon.ttf?yo1p1x') format('truetype'),
     url('fonts/ckl-icon.woff?yo1p1x') format('woff'),
     url('fonts/ckl-icon.svg?yo1p1x#ckl-icon') format('svg');

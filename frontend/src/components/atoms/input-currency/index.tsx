@@ -3,20 +3,22 @@ import CurrencyFormat from 'react-currency-format'
 import styles from './styles.module.scss'
 
 interface IInputCurrencyProps {
-  label: string;
-  name: string;
-  value: string;
-  text?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  label: string
+  name: string
+  value: string
+  text?: string
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   placeholder?: string
-  decimalScale?: number,
-  prefix?: string,
+  decimalScale?: number
+  prefix?: string
   padding?: string
-  icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 }
 
-const InputCurrency: React.FC<IInputCurrencyProps> = (props: IInputCurrencyProps) => {
-  const Icon = props.icon;
+const InputCurrency: React.FC<IInputCurrencyProps> = (
+  props: IInputCurrencyProps,
+) => {
+  const Icon = props.icon
 
   return (
     <div className={styles.cardInput}>
@@ -41,12 +43,10 @@ const InputCurrency: React.FC<IInputCurrencyProps> = (props: IInputCurrencyProps
           {Icon && <Icon />}
           {props.label}
         </label>
-        {props.text &&
-          <div className={styles.text}>{props.text}</div>
-        }
+        {props.text && <div className={styles.text}>{props.text}</div>}
       </div>
     </div>
-  );
-};
+  )
+}
 
 export { InputCurrency }

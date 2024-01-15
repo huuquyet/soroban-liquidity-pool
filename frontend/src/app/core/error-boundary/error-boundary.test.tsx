@@ -36,7 +36,7 @@ const renderComponent = (props?: IErrorBoundaryProps): void => {
   render(
     <ErrorBoundary {...props}>
       <DummyComponent />
-    </ErrorBoundary>
+    </ErrorBoundary>,
   )
 }
 

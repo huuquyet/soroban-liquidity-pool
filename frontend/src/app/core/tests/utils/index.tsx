@@ -8,7 +8,7 @@ const ApplicationProviders: FC<PropsWithChildren> = ({ children }) => (
 
 const customRender = (
   ui: ReactElement,
-  options?: Omit<RenderOptions, 'queries'>
+  options?: Omit<RenderOptions, 'queries'>,
 ): RenderOptions => render(ui, { wrapper: ApplicationProviders, ...options })
 
 export * from '@testing-library/react'
