@@ -1,13 +1,14 @@
 [workspace]
 resolver = "2"
 members = [
-  "contracts/*",
+  "contracts/token",
+  "contracts/liquidity-pool",
 ]
 
 [workspace.dependencies]
 soroban-sdk = "20.1.0"
 soroban-token-sdk = "20.1.0"
-num-integer = "0.1.45"
+num-integer = { version = "0.1.45", default-features = false }
 
 [profile.release]
 opt-level = "z"

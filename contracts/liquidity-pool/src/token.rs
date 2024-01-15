@@ -2,7 +2,7 @@
 use soroban_sdk::{xdr::ToXdr, Address, Bytes, BytesN, Env};
 
 soroban_sdk::contractimport!(
-    file = "./target/wasm32-unknown-unknown/release/soroban_token_contract.wasm"
+    file = "../../target/wasm32-unknown-unknown/release/soroban_token_contract.optimized.wasm"
 );
 
 pub fn create_contract(
