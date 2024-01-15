@@ -4,6 +4,8 @@ use crate::admin::{has_administrator, read_administrator, write_administrator};
 use crate::allowance::{read_allowance, spend_allowance, write_allowance};
 use crate::balance::{read_balance, receive_balance, spend_balance};
 use crate::metadata::{read_decimal, read_name, read_symbol, write_metadata};
+#[cfg(test)]
+use crate::storage_types::{AllowanceDataKey, AllowanceValue, DataKey};
 use crate::storage_types::{INSTANCE_BUMP_AMOUNT, INSTANCE_LIFETIME_THRESHOLD};
 use soroban_sdk::token::{self, Interface as _};
 use soroban_sdk::{contract, contractimpl, Address, Env, String};
@@ -20,6 +22,7 @@ fn check_nonnegative_amount(amount: i128) {
 pub struct Token;
 
 #[contractimpl]
+#[allow(unused)]
 impl Token {
     pub fn initialize(e: Env, admin: Address, decimal: u32, name: String, symbol: String) {
         if has_administrator(&e) {
@@ -40,23 +43,17 @@ impl Token {
         )
     }
 
-    /// Mint yourself some tokens!
-    ///
-    /// # Arguments
-    ///
-    /// * `to` - The account to mint tokens to; the transaction must also be signed by this
-    /// account
-    /// * `amount` - The amount of tokens to mint (remember to multiply by `decimals`!)
     pub fn mint(e: Env, to: Address, amount: i128) {
         check_nonnegative_amount(amount);
-        to.require_auth();
+        let admin = read_administrator(&e);
+        admin.require_auth();
 
         e.storage()
             .instance()
             .extend_ttl(INSTANCE_LIFETIME_THRESHOLD, INSTANCE_BUMP_AMOUNT);
 
         receive_balance(&e, to.clone(), amount);
-        TokenUtils::new(&e).events().mint(to.clone(), to, amount);
+        TokenUtils::new(&e).events().mint(admin, to, amount);
     }
 
     pub fn set_admin(e: Env, new_admin: Address) {
@@ -69,6 +66,12 @@ impl Token {
 
         write_administrator(&e, &new_admin);
         TokenUtils::new(&e).events().set_admin(admin, new_admin);
+    }
+
+    #[cfg(test)]
+    pub fn get_allowance(e: Env, from: Address, spender: Address) -> Option<AllowanceValue> {
+        let key = DataKey::Allowance(AllowanceDataKey { from, spender });
+        e.storage().temporary().get::<_, AllowanceValue>(&key)
     }
 }
 
@@ -102,13 +105,6 @@ impl token::Interface for Token {
             .extend_ttl(INSTANCE_LIFETIME_THRESHOLD, INSTANCE_BUMP_AMOUNT);
         read_balance(&e, id)
     }
-
-    // fn spendable_balance(e: Env, id: Address) -> i128 {
-    //     e.storage()
-    //         .instance()
-    //         .extend_ttl(INSTANCE_LIFETIME_THRESHOLD, INSTANCE_BUMP_AMOUNT);
-    //     read_balance(&e, id)
-    // }
 
     fn transfer(e: Env, from: Address, to: Address, amount: i128) {
         from.require_auth();

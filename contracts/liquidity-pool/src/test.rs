@@ -25,7 +25,7 @@ fn create_liqpool_contract<'a>(
 }
 
 fn install_token_wasm(e: &Env) -> BytesN<32> {
-    soroban_sdk::contractimport!(file = "./token/soroban_token_contract.wasm");
+    soroban_sdk::contractimport!(file = "./target/wasm32-unknown-unknown/release/soroban_token_contract.wasm");
     e.deployer().upload_contract_wasm(WASM)
 }
 
@@ -34,8 +34,8 @@ fn test() {
     let e = Env::default();
     e.mock_all_auths();
 
-    let mut admin1 = Address::random(&e);
-    let mut admin2 = Address::random(&e);
+    let mut admin1 = Address::generate(&e);
+    let mut admin2 = Address::generate(&e);
 
     let mut token1 = create_token_contract(&e, &admin1);
     let mut token2 = create_token_contract(&e, &admin2);
@@ -43,7 +43,7 @@ fn test() {
         std::mem::swap(&mut token1, &mut token2);
         std::mem::swap(&mut admin1, &mut admin2);
     }
-    let user1 = Address::random(&e);
+    let user1 = Address::generate(&e);
     let liqpool = create_liqpool_contract(
         &e,
         &install_token_wasm(&e),

@@ -3,14 +3,6 @@
 version = 3
 
 [[package]]
-name = "abundance-token"
-version = "0.0.6"
-dependencies = [
- "soroban-sdk",
- "soroban-token-sdk",
-]
-
-[[package]]
 name = "addr2line"
 version = "0.21.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1042,7 +1034,7 @@ dependencies = [
 
 [[package]]
 name = "soroban-liquidity-pool-contract"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "num-integer",
  "soroban-sdk",
@@ -1114,6 +1106,14 @@ dependencies = [
  "stellar-xdr",
  "syn",
  "thiserror",
+]
+
+[[package]]
+name = "soroban-token-contract"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk",
+ "soroban-token-sdk",
 ]
 
 [[package]]

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Soroban Liquidity pool example dApp",
   "private": "true",
-  "workspaces": ["./frontend"],
+  "workspaces": ["./frontend/*"],
   "scripts": {
     "clean": "git clean -xdf",
     "setup": "./initialize.sh ${NETWORK:-futurenet}",
