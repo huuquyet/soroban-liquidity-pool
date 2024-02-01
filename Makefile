@@ -13,38 +13,35 @@ help:
 	@echo "  make storybook         Starts the storybook"
 	@echo "  make build_storybook   Builds the storybook"
 	@echo "  make lint  	        Runs the frontend linter"
-	@echo "  make format_code       Formats the frontend code with prettier and fix the code style"
+	@echo "  make format_code       Formats the frontend code with biome and fix the code style"
 	@echo ""
 
 setup: package.json
-	npm install
+	yarn install
 
 build: setup
-	npm run build
+	yarn build
 
 start: setup
-	npm run start
+	yarn start
 
 start_dev: setup
-	npm run start:dev
+	yarn start:dev
 
 test: setup
-	npm run test
+	yarn test
 
 coverage-test: setup
-	npm run test -- --coverage
+	yarn test -- --coverage
 
 storybook: setup
-	npm run storybook
+	yarn storybook
 
 build-storybook: setup
-	npm run build-storybook
+	yarn build-storybook
 
 lint: setup
-	npm run lint
-
-format-code: setup
-	npm run prettier
+	yarn lint
 
 all:
 	test

@@ -14,7 +14,6 @@ Sentry.init({
 
 // this is the recommendation of the React docs
 // ref: https://react.dev/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />

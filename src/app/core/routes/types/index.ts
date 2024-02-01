@@ -4,15 +4,11 @@ import * as H from 'history'
 
 export type RouteProps = {
   location?: H.Location
-  component: // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  component:
   | React.ComponentType<RouteComponentProps<any>>
-    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     | React.ComponentType<any>
-    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     | React.FunctionComponent<any>
-  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   render?: (props: RouteComponentProps<any>) => React.ReactNode
-  children?: // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   ((props: RouteChildrenProps<any>) => React.ReactNode) | React.ReactNode
   path?: string
   exact?: boolean
@@ -21,11 +17,9 @@ export type RouteProps = {
 }
 
 export interface IAppRoute {
-  component: // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  component:
   | React.ComponentType<RouteComponentProps<any>>
-    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     | React.ComponentType<any>
-    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     | React.FunctionComponent<any>
   path: string
   exact?: boolean

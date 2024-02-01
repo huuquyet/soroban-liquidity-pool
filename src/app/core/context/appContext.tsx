@@ -3,9 +3,7 @@ import React, { createContext, useContext, useState } from 'react'
 const AppContext = createContext({
   walletAddress: '',
   network: '',
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setNetwork: (value: any) => value,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setWalletAddress: (value: any) => value,
 })
 

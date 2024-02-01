@@ -80,7 +80,6 @@ export function useAccount(): UseAccountType {
 
   useEffect(() => {
     setNetwork(FUTURENET_DETAILS.network)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // if the walletType is stored in local storage the first opening the page
@@ -97,7 +96,6 @@ export function useAccount(): UseAccountType {
       }
       getAccount()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walletAddress])
 
   const onConnect = async (): Promise<void> => {

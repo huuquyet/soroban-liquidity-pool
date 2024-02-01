@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 // this TS annotation is because react 18 doesn't have children as
 // prop in FC components, as it has before. Since react-router-dom v5
