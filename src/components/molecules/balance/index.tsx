@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import { FunctionComponent } from 'react'
 import styles from './styles.module.scss'
 import { Utils } from 'shared/utils'
 import { IMintFunction, IToken } from 'interfaces/soroban/token'

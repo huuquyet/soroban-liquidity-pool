@@ -1,4 +1,3 @@
-import React from 'react'
 import classNames from 'classnames'
 import { Utils } from 'shared/utils'
 import { TokenAIcon, TokenBIcon } from 'components/icons'

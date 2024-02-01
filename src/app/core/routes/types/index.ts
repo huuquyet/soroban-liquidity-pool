@@ -1,4 +1,3 @@
-import React from 'react'
 import { RouteChildrenProps, RouteComponentProps } from 'react-router'
 import * as H from 'history'
 

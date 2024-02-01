@@ -1,4 +1,3 @@
-import React from 'react'
 import PrivateRoute from '../private-route'
 import PublicRoute from '../public-route'
 import { IModuleRouteProps } from '../types'

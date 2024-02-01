@@ -1,4 +1,3 @@
-import React from 'react'
 import CurrencyFormat from 'react-currency-format'
 import styles from './styles.module.scss'
 

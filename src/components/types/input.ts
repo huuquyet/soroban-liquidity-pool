@@ -1,5 +1,3 @@
-import React from 'react'
-
 export interface IInputProps {
   /**
    * The HTML id of the component, if not provided the name prop will be used as a default

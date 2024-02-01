@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useState } from 'react'
 import { LoadingButton } from '@mui/lab'
 import styles from './styles.module.scss'
 import { IToken } from 'interfaces/soroban/token'

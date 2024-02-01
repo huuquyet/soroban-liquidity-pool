@@ -1,8 +1,8 @@
 import { render, RenderOptions } from '@testing-library/react'
-import { FC, PropsWithChildren, ReactElement } from 'react'
+import { PropsWithChildren, ReactElement } from 'react'
 
 // If the application has providers, you can add them in the wrapper below
-const ApplicationProviders: FC<PropsWithChildren> = ({ children }) => (
+const ApplicationProviders: React.FC<PropsWithChildren> = ({ children }) => (
   <>{children}</>
 )
 
