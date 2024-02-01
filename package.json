@@ -64,20 +64,22 @@
     "vite-tsconfig-paths": "^4.2.3"
   },
   "scripts": {
+    "build": "tsc && vite build",
+    "build:storybook": "storybook build -s ../public",
+    "clean": "git clean -xdf",
+    "doctor": "yarn dlx @yarnpkg/doctor",
+    "lint": "eslint --ext .ts,.tsx src/",
+    "lint:staged": "lint-staged",
+    "reset": "npm run clean && npm run setup",
+    "setup": "./initialize.sh ${NETWORK:-futurenet} && npm install",
     "start": "vite --host",
     "start:dev": "npm start",
     "start:staging": "npm start -- --mode staging",
-    "build": "tsc && vite build",
+    "storybook": "storybook dev -p 6006 -s ../public",
     "test": "jest",
     "test:coverage": "npm run test -- --coverage --watchAll=false",
-    "lint:staged": "lint-staged",
-    "lint": "eslint --ext .ts,.tsx src/",
-    "prettier": "prettier --write src/**/*.{js,jsx,ts,tsx,json,css,scss,md}",
-    "storybook": "storybook dev -p 6006 -s ../public",
-    "build-storybook": "storybook build -s ../public",
-    "clean": "git clean -xdf",
-    "setup": "./initialize.sh ${NETWORK:-futurenet} && npm install",
-    "reset": "npm run clean && npm run setup"
+    "update": "yarn upgrade-interactive",
+    "vscode": "yarn dlx @yarnpkg/sdks vscode"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
@@ -96,5 +98,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "packageManager": "yarn@4.1.0"
 }
