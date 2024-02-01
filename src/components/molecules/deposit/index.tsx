@@ -1,11 +1,11 @@
-import { FunctionComponent, useState } from 'react'
 import { LoadingButton } from '@mui/lab'
-import styles from './styles.module.scss'
-import { IToken } from 'interfaces/soroban/token'
 import { InputCurrency, InputPercentage } from 'components/atoms'
-import { TokenAIcon, TokenBIcon } from 'components/icons'
 import { ErrorText } from 'components/atoms/error-text'
+import { TokenAIcon, TokenBIcon } from 'components/icons'
+import { IToken } from 'interfaces/soroban/token'
+import { FunctionComponent, useState } from 'react'
 import { liquidityPoolContract } from '../../../shared/contracts'
+import styles from './styles.module.scss'
 
 interface IFormValues {
   tokenAAmount: string
@@ -20,12 +20,7 @@ interface IDeposit {
   onUpdate: () => void
 }
 
-const Deposit: FunctionComponent<IDeposit> = ({
-  account,
-  tokenA,
-  tokenB,
-  onUpdate,
-}) => {
+const Deposit: FunctionComponent<IDeposit> = ({ account, tokenA, tokenB, onUpdate }) => {
   const [isSubmitting, setSubmitting] = useState(false)
   const [error, setError] = useState(false)
 
@@ -48,11 +43,9 @@ const Deposit: FunctionComponent<IDeposit> = ({
     try {
       const { tokenAAmount, tokenBAmount, maxSlippage } = formValues
       const minA =
-        parseFloat(tokenAAmount) -
-        (parseFloat(maxSlippage) * parseFloat(tokenAAmount)) / 100
+        parseFloat(tokenAAmount) - (parseFloat(maxSlippage) * parseFloat(tokenAAmount)) / 100
       const minB =
-        parseFloat(tokenBAmount) -
-        (parseFloat(maxSlippage) * parseFloat(tokenBAmount)) / 100
+        parseFloat(tokenBAmount) - (parseFloat(maxSlippage) * parseFloat(tokenBAmount)) / 100
 
       const tx = await liquidityPoolContract.deposit(
         {
@@ -62,7 +55,7 @@ const Deposit: FunctionComponent<IDeposit> = ({
           min_a: BigInt(minA * 10 ** tokenA.decimals),
           min_b: BigInt(minB * 10 ** tokenB.decimals),
         },
-        { fee: 100000 },
+        { fee: 100000 }
       )
       await tx.signAndSend()
     } catch (error) {

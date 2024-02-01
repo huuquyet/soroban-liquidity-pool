@@ -17,5 +17,5 @@ export enum IconNames {
   'chevron-right' = 'chevron-right',
   'chevron-left' = 'chevron-left',
   'chevron-down' = 'chevron-down',
-  'calendar' = 'calendar',
+  calendar = 'calendar',
 }

@@ -1,16 +1,16 @@
+import { useAccount } from 'app/core/hooks/useAccount'
 import classNames from 'classnames'
-import { Utils } from 'shared/utils'
 import { TokenAIcon, TokenBIcon } from 'components/icons'
 import { NetworkData } from 'components/molecules'
-import { LiquidityActions, AccountData } from 'components/organisms'
-import { useAccount } from 'app/core/hooks/useAccount'
+import { AccountData, LiquidityActions } from 'components/organisms'
 import { IReserves } from 'interfaces/soroban/liquidityPool'
 import { IToken } from 'interfaces/soroban/token'
+import { Utils } from 'shared/utils'
 import {
+  liquidityPoolContract,
+  shareTokenContract,
   tokenAContract,
   tokenBContract,
-  shareTokenContract,
-  liquidityPoolContract,
 } from '../../../../shared/contracts'
 import styles from './styles.module.scss'
 
@@ -44,57 +44,56 @@ const Home = (): JSX.Element => {
       tokenBContract.decimals(),
       shareTokenContract.symbol(),
       shareTokenContract.decimals(),
-    ]).then(fetched => {
-      setTokenA(prevTokenA => ({
+    ]).then((fetched) => {
+      setTokenA((prevTokenA) => ({
         ...prevTokenA,
         symbol: fetched[0].result,
         decimals: fetched[1].result,
       }))
-      setTokenB(prevTokenB => ({
+      setTokenB((prevTokenB) => ({
         ...prevTokenB,
         symbol: fetched[2].result,
         decimals: fetched[3].result,
       }))
-      setShareToken(prevShareToken => ({
+      setShareToken((prevShareToken) => ({
         ...prevShareToken,
         symbol: fetched[4].result,
         decimals: fetched[5].result,
       }))
     })
-  }, [])
+  }, [setTokenA, setTokenB, setShareToken])
 
   React.useEffect(() => {
-    Promise.all([
-      liquidityPoolContract.getRsrvs(),
-      liquidityPoolContract.getShares(),
-    ]).then(fetched => {
-      setReserves({
-        reservesA: fetched[0].result[0],
-        reservesB: fetched[0].result[1],
-      })
-      setTotalShares(fetched[1].result)
-    })
-    if (account?.address) {
+    Promise.all([liquidityPoolContract.getRsrvs(), liquidityPoolContract.getShares()]).then(
+      (fetched) => {
+        setReserves({
+          reservesA: fetched[0].result[0],
+          reservesB: fetched[0].result[1],
+        })
+        setTotalShares(fetched[1].result)
+      }
+    )
+    if (account.address) {
       Promise.all([
         tokenAContract.balance({ id: account.address }),
         tokenBContract.balance({ id: account.address }),
         shareTokenContract.balance({ id: account.address }),
-      ]).then(fetched => {
-        setTokenA(prevTokenA => ({
+      ]).then((fetched) => {
+        setTokenA((prevTokenA) => ({
           ...prevTokenA,
           balance: fetched[0].result,
         }))
-        setTokenB(prevTokenB => ({
+        setTokenB((prevTokenB) => ({
           ...prevTokenB,
           balance: fetched[1].result,
         }))
-        setShareToken(prevShareToken => ({
+        setShareToken((prevShareToken) => ({
           ...prevShareToken,
           balance: fetched[2].result,
         }))
       })
     }
-  }, [updatedAt, account])
+  }, [setReserves, setTotalShares, setTokenA, setTokenB, setShareToken, account.address])
 
   return (
     <main>
@@ -123,9 +122,7 @@ const Home = (): JSX.Element => {
               <div className={styles.poolName}>
                 <div>
                   <TokenAIcon className={styles.tokenIcon} />
-                  <TokenBIcon
-                    className={classNames(styles.tokenIcon, styles.tokenIconB)}
-                  />
+                  <TokenBIcon className={classNames(styles.tokenIcon, styles.tokenIconB)} />
                 </div>
                 <h1>
                   {tokenA.symbol} · {tokenB.symbol}
@@ -136,12 +133,10 @@ const Home = (): JSX.Element => {
                   <div className={styles.label}>Reserves</div>
                   <div className={styles.values}>
                     <div>
-                      {Utils.formatAmount(reserves.reservesA, tokenA.decimals)}{' '}
-                      {tokenA.symbol}
+                      {Utils.formatAmount(reserves.reservesA, tokenA.decimals)} {tokenA.symbol}
                     </div>
                     <div>
-                      {Utils.formatAmount(reserves.reservesB, tokenB.decimals)}{' '}
-                      {tokenB.symbol}
+                      {Utils.formatAmount(reserves.reservesB, tokenB.decimals)} {tokenB.symbol}
                     </div>
                   </div>
                 </div>
@@ -167,9 +162,7 @@ const Home = (): JSX.Element => {
             />
           ) : (
             <div className={styles.card}>
-              <p>
-                Please connect your wallet to start using the liquidity pool.
-              </p>
+              <p>Please connect your wallet to start using the liquidity pool.</p>
             </div>
           )}
         </div>

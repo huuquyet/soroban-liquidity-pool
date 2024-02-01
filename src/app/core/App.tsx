@@ -1,5 +1,5 @@
-import { AppProvider } from './context/appContext'
 import { CoreRouter } from 'app/core/routes'
+import { AppProvider } from './context/appContext'
 import ErrorBoundary from './error-boundary'
 
 const App = (): JSX.Element => (

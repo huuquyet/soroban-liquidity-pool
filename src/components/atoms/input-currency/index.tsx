@@ -14,9 +14,7 @@ interface IInputCurrencyProps {
   icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 }
 
-const InputCurrency: React.FC<IInputCurrencyProps> = (
-  props: IInputCurrencyProps,
-) => {
+const InputCurrency: React.FC<IInputCurrencyProps> = (props: IInputCurrencyProps) => {
   const Icon = props.icon
 
   return (

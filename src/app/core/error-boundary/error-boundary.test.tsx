@@ -1,20 +1,17 @@
 import { useState } from 'react'
 import ErrorBoundary, { IErrorBoundaryProps } from '.'
-import { render, screen, fireEvent } from '../tests/utils'
+import { fireEvent, render, screen } from '../tests/utils'
 
 const BUTTON = 'button'
 const TEST_THROW_ERROR = 'Test ErrorBoundary: This error was thrown!'
-const TEST_DISPLAY_MESSAGE_ERROR =
-  'Test ErrorBoundary: This is a display message!'
+const TEST_DISPLAY_MESSAGE_ERROR = 'Test ErrorBoundary: This is a display message!'
 const DUMMY_COMPONENT_TEXT = 'This is a dummy children component'
 const FALLBACK_COMPONENT_TESTID = 'fallback-component'
 const DEFAULT_FALLBACK_COMPONENT_TESTID = 'default-fallback'
 
 const { getByRole, getByTestId, getByText, queryByText } = screen
 const getButton = (): HTMLElement => getByRole(BUTTON, { name: 'set error' })
-const fallback = (): JSX.Element => (
-  <div data-testid={FALLBACK_COMPONENT_TESTID} />
-)
+const fallback = (): JSX.Element => <div data-testid={FALLBACK_COMPONENT_TESTID} />
 
 const DummyComponent = (): JSX.Element => {
   const [error, setError] = useState<boolean>(false)
@@ -27,7 +24,9 @@ const DummyComponent = (): JSX.Element => {
   return (
     <div>
       <p>This is a dummy children component</p>
-      <button onClick={handleClick}>set error</button>
+      <button onClick={handleClick} type="button">
+        set error
+      </button>
     </div>
   )
 }
@@ -36,7 +35,7 @@ const renderComponent = (props?: IErrorBoundaryProps): void => {
   render(
     <ErrorBoundary {...props}>
       <DummyComponent />
-    </ErrorBoundary>,
+    </ErrorBoundary>
   )
 }
 

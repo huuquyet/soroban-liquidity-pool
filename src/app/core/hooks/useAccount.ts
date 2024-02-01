@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react'
-import {
-  ISupportedWallet,
-  StellarWalletsKit,
-  WalletNetwork,
-  WalletType,
-} from 'stellar-wallets-kit'
+import { ISupportedWallet, StellarWalletsKit, WalletNetwork, WalletType } from 'stellar-wallets-kit'
 import { useAppContext } from '../context/appContext'
 
 // returning the same object identity every time avoids unnecessary re-renders
@@ -42,8 +37,7 @@ type UseAccountType = {
   isLoading: boolean
 }
 export function useAccount(): UseAccountType {
-  const { walletAddress, network, setWalletAddress, setNetwork } =
-    useAppContext()
+  const { walletAddress, network, setWalletAddress, setNetwork } = useAppContext()
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -54,7 +48,7 @@ export function useAccount(): UseAccountType {
     new StellarWalletsKit({
       network: selectedNetwork.networkPassphrase as WalletNetwork,
       selectedWallet: WalletType.FREIGHTER,
-    }),
+    })
   )
 
   const getWalletAddress = async (type: WalletType): Promise<void> => {
@@ -80,15 +74,13 @@ export function useAccount(): UseAccountType {
 
   useEffect(() => {
     setNetwork(FUTURENET_DETAILS.network)
-  }, [])
+  }, [setNetwork])
 
   // if the walletType is stored in local storage the first opening the page
   // will trigger autoconnect for users
   useEffect(() => {
     const storedWallet = localStorage.getItem(STORAGE_WALLET_KEY)
-    const walletType = Object.values(WalletType).includes(
-      storedWallet as WalletType,
-    )
+    const walletType = Object.values(WalletType).includes(storedWallet as WalletType)
 
     if (!walletAddress && storedWallet && walletType) {
       const getAccount = async (): Promise<void> => {
@@ -96,7 +88,7 @@ export function useAccount(): UseAccountType {
       }
       getAccount()
     }
-  }, [walletAddress])
+  }, [walletAddress, getWalletAddress])
 
   const onConnect = async (): Promise<void> => {
     if (!walletAddress) {

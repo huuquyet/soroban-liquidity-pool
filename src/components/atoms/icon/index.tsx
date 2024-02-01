@@ -24,16 +24,10 @@ interface IIconProps {
   className?: string
 }
 
-const Icon = ({
-  name,
-  alt,
-  className,
-  color,
-  size,
-}: IIconProps): JSX.Element => {
+const Icon = ({ name, alt, className, color, size }: IIconProps): JSX.Element => {
   return (
     <i
-      role="img"
+      // role="img"
       title={alt}
       aria-label={alt}
       className={classNames(`icon-font-${name}`, className)}

@@ -54,6 +54,7 @@ const DefaultFallbackComponent: ErrorBoundaryFallback = ({
         onClick={(): void => {
           resetError()
         }}
+        type="button"
       >
         Click here to reset!
       </button>

@@ -1,7 +1,7 @@
+import * as LiquidityPool from 'liquidity-pool-contract'
+import * as ShareToken from 'share-token-contract'
 import * as TokenA from 'token-a-contract'
 import * as TokenB from 'token-b-contract'
-import * as ShareToken from 'share-token-contract'
-import * as LiquidityPool from 'liquidity-pool-contract'
 import config from './config.json'
 const { network, rpcUrl } = config
 

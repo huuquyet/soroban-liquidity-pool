@@ -1,5 +1,5 @@
-import CurrencyFormat from 'react-currency-format'
 import { Icon, IconNames, Tooltip } from 'components/atoms'
+import CurrencyFormat from 'react-currency-format'
 import styles from './styles.module.scss'
 
 interface IInputPercentageProps {
@@ -14,9 +14,7 @@ interface IInputPercentageProps {
   helpText?: string
 }
 
-const InputPercentage: React.FC<IInputPercentageProps> = (
-  props: IInputPercentageProps,
-) => {
+const InputPercentage: React.FC<IInputPercentageProps> = (props: IInputPercentageProps) => {
   return (
     <div>
       <div className={styles.label}>

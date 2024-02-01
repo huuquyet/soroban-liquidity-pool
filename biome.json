@@ -11,6 +11,8 @@
       "**/.next",
       "**/.pnp*",
       "**/.soroban",
+      "**/.jest",
+      "**/.storybook",
       "**/dist",
       "**/types",
       "**/public",
@@ -21,7 +23,10 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "suspicious": {
+        "noExplicitAny": "off"
+      }
     }
   },
   "formatter": {

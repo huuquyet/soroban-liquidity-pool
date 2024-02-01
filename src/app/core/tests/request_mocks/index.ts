@@ -7,7 +7,7 @@ const handlers = [
   rest.get(`${BASE_HOST_URL}/ping`, (req, res, ctx) => {
     return res(
       // Respond with a 200 status code
-      ctx.status(200, 'pong'),
+      ctx.status(200, 'pong')
     )
   }),
 ]

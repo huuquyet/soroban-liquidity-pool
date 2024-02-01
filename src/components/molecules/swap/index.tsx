@@ -1,19 +1,13 @@
-import { FunctionComponent, useState } from 'react'
 import { LoadingButton } from '@mui/lab'
 import { Button } from '@mui/material'
-import styles from './styles.module.scss'
-import { IToken } from 'interfaces/soroban/token'
-import { IReserves } from 'interfaces/soroban/liquidityPool'
-import {
-  Icon,
-  IconNames,
-  InputCurrency,
-  InputPercentage,
-  Tooltip,
-} from 'components/atoms'
-import { SwapIcon, TokenAIcon, TokenBIcon } from 'components/icons'
+import { Icon, IconNames, InputCurrency, InputPercentage, Tooltip } from 'components/atoms'
 import { ErrorText } from 'components/atoms/error-text'
+import { SwapIcon, TokenAIcon, TokenBIcon } from 'components/icons'
+import { IReserves } from 'interfaces/soroban/liquidityPool'
+import { IToken } from 'interfaces/soroban/token'
+import { FunctionComponent, useState } from 'react'
 import { liquidityPoolContract } from '../../../shared/contracts'
+import styles from './styles.module.scss'
 
 interface IFormValues {
   buyAmount: string
@@ -28,13 +22,7 @@ interface ISwap {
   onUpdate: () => void
 }
 
-const Swap: FunctionComponent<ISwap> = ({
-  account,
-  tokenA,
-  tokenB,
-  reserves,
-  onUpdate,
-}) => {
+const Swap: FunctionComponent<ISwap> = ({ account, tokenA, tokenB, reserves, onUpdate }) => {
   const [isSubmitting, setSubmitting] = useState(false)
   const [error, setError] = useState(false)
   const [swapTokens, setSwapTokens] = useState({
@@ -49,17 +37,12 @@ const Swap: FunctionComponent<ISwap> = ({
   })
 
   // TokenA value in terms of TokenB based on pool reserves
-  const tokenAInTokenB = reserves.reservesA
-    ? reserves.reservesB / reserves.reservesA
-    : 0
+  const tokenAInTokenB = reserves.reservesA ? reserves.reservesB / reserves.reservesA : 0
   // TokenB value in terms of TokenA based on pool reserves
-  const tokenBInTokenA = reserves.reservesB
-    ? reserves.reservesA / reserves.reservesB
-    : 0
+  const tokenBInTokenA = reserves.reservesB ? reserves.reservesA / reserves.reservesB : 0
   // Maximum amount that will be sold based on sell amount and max slippage
   const maxSold = Math.ceil(
-    parseFloat(formValues.sellAmount) *
-      (1 + parseFloat(formValues.maxSlippage) / 100),
+    parseFloat(formValues.sellAmount) * (1 + parseFloat(formValues.maxSlippage) / 100)
   )
 
   const handleChangeTokensOrder = (e: React.MouseEvent): void => {
@@ -89,14 +72,11 @@ const Swap: FunctionComponent<ISwap> = ({
       const tx = await liquidityPoolContract.swap(
         {
           to: account,
-          buy_a: swapTokens.buy.token == tokenA,
-          out: BigInt(
-            parseFloat(formValues.buyAmount) *
-              10 ** swapTokens.buy.token.decimals,
-          ),
+          buy_a: swapTokens.buy.token === tokenA,
+          out: BigInt(parseFloat(formValues.buyAmount) * 10 ** swapTokens.buy.token.decimals),
           in_max: BigInt(maxSold * 10 ** swapTokens.sell.token.decimals),
         },
-        { fee: 100000 },
+        { fee: 100000 }
       )
       await tx.signAndSend()
     } catch (error) {
@@ -175,12 +155,10 @@ const Swap: FunctionComponent<ISwap> = ({
                 </Tooltip>
               </div>
               <div>
-                1 {tokenA.symbol} = {tokenAInTokenB.toLocaleString()}{' '}
-                {tokenB.symbol}
+                1 {tokenA.symbol} = {tokenAInTokenB.toLocaleString()} {tokenB.symbol}
               </div>
               <div>
-                1 {tokenB.symbol} = {tokenBInTokenA.toLocaleString()}{' '}
-                {tokenA.symbol}
+                1 {tokenB.symbol} = {tokenBInTokenA.toLocaleString()} {tokenA.symbol}
               </div>
             </div>
           </div>
@@ -202,8 +180,7 @@ const Swap: FunctionComponent<ISwap> = ({
           fullWidth
           loading={isSubmitting}
           disabled={
-            parseFloat(formValues.buyAmount) == 0 &&
-            parseFloat(formValues.sellAmount) == 0
+            parseFloat(formValues.buyAmount) === 0 && parseFloat(formValues.sellAmount) === 0
           }
         >
           Swap

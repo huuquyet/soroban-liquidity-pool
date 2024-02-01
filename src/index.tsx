@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/react'
+import App from 'app/core/App'
 import { createRoot } from 'react-dom/client'
 import reportWebVitals from './config/reportWebVitals'
-import App from 'app/core/App'
 import './index.css'
 
 Sentry.init({
@@ -13,10 +13,10 @@ Sentry.init({
 
 // this is the recommendation of the React docs
 // ref: https://react.dev/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
 )
 
 // If you want to start measuring performance in your app, pass a function

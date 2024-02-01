@@ -1,8 +1,8 @@
-import { FunctionComponent } from 'react'
-import styles from './styles.module.scss'
-import { Utils } from 'shared/utils'
-import { IMintFunction, IToken } from 'interfaces/soroban/token'
 import { MintButton } from 'components/atoms'
+import { IMintFunction, IToken } from 'interfaces/soroban/token'
+import { FunctionComponent } from 'react'
+import { Utils } from 'shared/utils'
+import styles from './styles.module.scss'
 
 interface IBalance {
   account: string
@@ -32,12 +32,7 @@ const Balance: FunctionComponent<IBalance> = ({
       </div>
       {mint && (
         <div>
-          <MintButton
-            account={account}
-            decimals={token.decimals}
-            mint={mint}
-            onUpdate={onUpdate}
-          />
+          <MintButton account={account} decimals={token.decimals} mint={mint} onUpdate={onUpdate} />
         </div>
       )}
     </div>

@@ -5,10 +5,7 @@ export interface IConnectButtonProps {
   onClick: () => void
 }
 
-export const ConnectButton: React.FC<IConnectButtonProps> = ({
-  label,
-  onClick,
-}) => {
+export const ConnectButton: React.FC<IConnectButtonProps> = ({ label, onClick }) => {
   return (
     <Button onClick={onClick} variant="contained">
       {label}

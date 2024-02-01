@@ -1,7 +1,7 @@
-import { FunctionComponent, useState } from 'react'
-import styles from './styles.module.scss'
 import { LoadingButton } from '@mui/lab'
 import { IMintFunction } from 'interfaces/soroban/token'
+import { FunctionComponent, useState } from 'react'
+import styles from './styles.module.scss'
 
 interface IMintButton {
   account: string
@@ -10,12 +10,7 @@ interface IMintButton {
   onUpdate: () => void
 }
 
-const MintButton: FunctionComponent<IMintButton> = ({
-  account,
-  decimals,
-  mint,
-  onUpdate,
-}) => {
+const MintButton: FunctionComponent<IMintButton> = ({ account, decimals, mint, onUpdate }) => {
   const [isSubmitting, setSubmitting] = useState(false)
   const amount = BigInt(100 * 10 ** decimals)
 

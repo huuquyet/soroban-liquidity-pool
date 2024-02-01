@@ -13,13 +13,7 @@ const ModuleRoutes = ({
         const routeProps = { component, exact, path: `${routePrefix}${path}` }
 
         if (isPrivate) {
-          return (
-            <PrivateRoute
-              {...routeProps}
-              isAuthenticated={isAuthenticated}
-              key={path}
-            />
-          )
+          return <PrivateRoute {...routeProps} isAuthenticated={isAuthenticated} key={path} />
         }
 
         return <PublicRoute {...routeProps} key={path} />

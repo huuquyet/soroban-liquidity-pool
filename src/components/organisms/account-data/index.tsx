@@ -1,8 +1,8 @@
-import { FunctionComponent } from 'react'
 import { ConnectButton } from 'components/atoms'
 import { TokenAIcon, TokenBIcon, TokenLPIcon } from 'components/icons'
 import { Balance } from 'components/molecules'
 import { IToken } from 'interfaces/soroban/token'
+import { FunctionComponent } from 'react'
 import { tokenAContract, tokenBContract } from '../../../shared/contracts'
 import styles from './styles.module.scss'
 
@@ -59,9 +59,7 @@ const BalanceData: FunctionComponent<IBalanceData> = ({
   return (
     <>
       <div className={styles.address}>
-        {`${account.substring(0, 10)}...${account.substring(
-          account.length - 10,
-        )}`}
+        {`${account.substring(0, 10)}...${account.substring(account.length - 10)}`}
       </div>
       <div className={styles.balances}>
         <Balance

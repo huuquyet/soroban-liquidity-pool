@@ -1,8 +1,8 @@
-import { useState, FunctionComponent, Dispatch, SetStateAction } from 'react'
-import styles from './styles.module.scss'
 import { Deposit, Swap, Withdraw } from 'components/molecules'
-import { IToken } from 'interfaces/soroban/token'
 import { IReserves } from 'interfaces/soroban/liquidityPool'
+import { IToken } from 'interfaces/soroban/token'
+import { Dispatch, FunctionComponent, SetStateAction, useState } from 'react'
+import styles from './styles.module.scss'
 
 interface ILiquidityActions {
   account: string
@@ -32,32 +32,15 @@ const LiquidityActions: FunctionComponent<ILiquidityActions> = ({
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <HeaderItem
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          label={'Deposit'}
-        />
-        <HeaderItem
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          label={'Swap'}
-        />
-        <HeaderItem
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          label={'Withdraw'}
-        />
+        <HeaderItem activeTab={activeTab} setActiveTab={setActiveTab} label={'Deposit'} />
+        <HeaderItem activeTab={activeTab} setActiveTab={setActiveTab} label={'Swap'} />
+        <HeaderItem activeTab={activeTab} setActiveTab={setActiveTab} label={'Withdraw'} />
       </div>
       <div className={styles.content}>
-        {activeTab == 'Deposit' && (
-          <Deposit
-            tokenA={tokenA}
-            tokenB={tokenB}
-            account={account}
-            onUpdate={onUpdate}
-          />
+        {activeTab === 'Deposit' && (
+          <Deposit tokenA={tokenA} tokenB={tokenB} account={account} onUpdate={onUpdate} />
         )}
-        {activeTab == 'Swap' && (
+        {activeTab === 'Swap' && (
           <Swap
             tokenA={tokenA}
             tokenB={tokenB}
@@ -66,7 +49,7 @@ const LiquidityActions: FunctionComponent<ILiquidityActions> = ({
             onUpdate={onUpdate}
           />
         )}
-        {activeTab == 'Withdraw' && (
+        {activeTab === 'Withdraw' && (
           <Withdraw
             tokenA={tokenA}
             tokenB={tokenB}
@@ -88,19 +71,16 @@ interface IHeaderItem {
   label: string
 }
 
-const HeaderItem: FunctionComponent<IHeaderItem> = ({
-  activeTab,
-  setActiveTab,
-  label,
-}) => {
+const HeaderItem: FunctionComponent<IHeaderItem> = ({ activeTab, setActiveTab, label }) => {
   const handleChangeActiveTab = (tab: string): void => {
     setActiveTab(tab)
   }
   return (
     <div className={styles.headerItem}>
       <div
-        className={`${styles.title} ${activeTab == label ? styles.active : ''}`}
+        className={`${styles.title} ${activeTab === label ? styles.active : ''}`}
         onClick={(): void => handleChangeActiveTab(label)}
+        onKeyDown={() => {}}
       >
         {label}
       </div>

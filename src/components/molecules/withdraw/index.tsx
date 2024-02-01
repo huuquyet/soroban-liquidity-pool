@@ -1,18 +1,12 @@
-import { FunctionComponent, useState } from 'react'
 import { LoadingButton } from '@mui/lab'
-import styles from './styles.module.scss'
-import { IToken } from 'interfaces/soroban/token'
-import { IReserves } from 'interfaces/soroban/liquidityPool'
-import {
-  Icon,
-  IconNames,
-  InputPercentage,
-  InputSlider,
-  Tooltip,
-} from 'components/atoms'
-import { Utils } from 'shared/utils'
+import { Icon, IconNames, InputPercentage, InputSlider, Tooltip } from 'components/atoms'
 import { ErrorText } from 'components/atoms/error-text'
+import { IReserves } from 'interfaces/soroban/liquidityPool'
+import { IToken } from 'interfaces/soroban/token'
+import { FunctionComponent, useState } from 'react'
+import { Utils } from 'shared/utils'
 import { liquidityPoolContract } from '../../../shared/contracts'
+import styles from './styles.module.scss'
 
 interface IFormValues {
   sharePercent: string
@@ -50,16 +44,15 @@ const Withdraw: FunctionComponent<IWithdraw> = ({
   // Selected slipagge
   const slippageFactor = parseFloat(formValues.maxSlippage) / 100
   // Amount of shares selected
-  const shareAmount =
-    (accBalanceShares * BigInt(parseInt(formValues.sharePercent))) / BigInt(100)
+  const shareAmount = (accBalanceShares * BigInt(parseInt(formValues.sharePercent))) / BigInt(100)
   // Amount of TokenA regarding the amount of shares and slippage selected
   const tokenATotalWithSlippage = poolTotalShares
     ? BigInt(
         Math.floor(
           (Number(shareAmount) / Number(poolTotalShares)) *
             Number(reserves.reservesA) *
-            (1 - slippageFactor),
-        ),
+            (1 - slippageFactor)
+        )
       )
     : BigInt(0)
   // Amount of TokenB regarding the amount of shares and slippage selected
@@ -68,8 +61,8 @@ const Withdraw: FunctionComponent<IWithdraw> = ({
         Math.floor(
           (Number(shareAmount) / Number(poolTotalShares)) *
             Number(reserves.reservesB) *
-            (1 - slippageFactor),
-        ),
+            (1 - slippageFactor)
+        )
       )
     : BigInt(0)
 
@@ -90,7 +83,7 @@ const Withdraw: FunctionComponent<IWithdraw> = ({
           min_a: tokenATotalWithSlippage,
           min_b: tokenBTotalWithSlippage,
         },
-        { fee: 1000000 },
+        { fee: 1000000 }
       )
       await tx.signAndSend()
     } catch (error) {
@@ -134,8 +127,7 @@ const Withdraw: FunctionComponent<IWithdraw> = ({
                 </Tooltip>
               </div>
               <div>
-                {Utils.formatAmount(tokenATotalWithSlippage, tokenA.decimals)}{' '}
-                {tokenA.symbol}
+                {Utils.formatAmount(tokenATotalWithSlippage, tokenA.decimals)} {tokenA.symbol}
               </div>
             </div>
             <div className={styles.infoItem}>
@@ -154,8 +146,7 @@ const Withdraw: FunctionComponent<IWithdraw> = ({
                 </Tooltip>
               </div>
               <div>
-                {Utils.formatAmount(tokenBTotalWithSlippage, tokenB.decimals)}{' '}
-                {tokenB.symbol}
+                {Utils.formatAmount(tokenBTotalWithSlippage, tokenB.decimals)} {tokenB.symbol}
               </div>
             </div>
           </div>
