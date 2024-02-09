@@ -1,5 +1,6 @@
 import * as Sentry from '@sentry/react'
 import { ErrorBoundaryProps as SentryErrorBoundaryProps } from '@sentry/react/types/errorboundary'
+import { ReactNode } from 'react'
 import styles from './styles.module.scss'
 
 export type ErrorBoundaryFallback = ({
@@ -34,7 +35,7 @@ export interface IErrorBoundaryProps extends SentryErrorBoundaryProps {
   /**
    * Children component to be rendered if no error is caught
    */
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 const DefaultFallbackComponent: ErrorBoundaryFallback = ({

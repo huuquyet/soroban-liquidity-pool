@@ -1,5 +1,11 @@
+import {
+  FREIGHTER_ID,
+  FreighterModule,
+  ISupportedWallet,
+  StellarWalletsKit,
+  WalletNetwork,
+} from '@creit.tech/stellar-wallets-kit'
 import { useEffect, useState } from 'react'
-import { ISupportedWallet, StellarWalletsKit, WalletNetwork, WalletType } from 'stellar-wallets-kit'
 import { useAppContext } from '../context/appContext'
 
 // returning the same object identity every time avoids unnecessary re-renders
@@ -23,12 +29,6 @@ const FUTURENET_DETAILS = {
 
 const STORAGE_WALLET_KEY = 'wallet'
 
-const allowedWallets = [
-  // WalletType.ALBEDO,
-  WalletType.FREIGHTER,
-  // WalletType.XBULL,
-]
-
 type UseAccountType = {
   account: typeof addressObject | null
   network: string
@@ -44,25 +44,24 @@ export function useAccount(): UseAccountType {
   // Update is not only Futurenet is available
   const [selectedNetwork] = useState(FUTURENET_DETAILS)
   // Setup swc, user will set the desired wallet on connect
-  const [SWKKit] = useState(
-    new StellarWalletsKit({
-      network: selectedNetwork.networkPassphrase as WalletNetwork,
-      selectedWallet: WalletType.FREIGHTER,
-    })
-  )
+  const kit = new StellarWalletsKit({
+    network: WalletNetwork.FUTURENET,
+    selectedWalletId: FREIGHTER_ID,
+    modules: [new FreighterModule()],
+  })
 
-  const getWalletAddress = async (type: WalletType): Promise<void> => {
+  const getWalletAddress = async (id: any): Promise<void> => {
     try {
       setIsLoading(true)
       // Set selected wallet, network, and public key
-      SWKKit.setWallet(type)
-      const publicKey = await SWKKit.getPublicKey()
-      await SWKKit.setNetwork(WalletNetwork.FUTURENET)
+      kit.setWallet(id)
+      const publicKey = await kit.getPublicKey()
+      await kit.setNetwork(WalletNetwork.FUTURENET)
 
       // Short timeout to prevent blick on loading address
       setTimeout(() => {
         setWalletAddress(publicKey)
-        localStorage.setItem(STORAGE_WALLET_KEY, type)
+        localStorage.setItem(STORAGE_WALLET_KEY, id)
         setIsLoading(false)
       }, 500)
     } catch (error) {
@@ -80,11 +79,11 @@ export function useAccount(): UseAccountType {
   // will trigger autoconnect for users
   useEffect(() => {
     const storedWallet = localStorage.getItem(STORAGE_WALLET_KEY)
-    const walletType = Object.values(WalletType).includes(storedWallet as WalletType)
+    // const walletType = Object.values(WalletType).includes(storedWallet as WalletType)
 
-    if (!walletAddress && storedWallet && walletType) {
+    if (!walletAddress && storedWallet) {
       const getAccount = async (): Promise<void> => {
-        await getWalletAddress(storedWallet as WalletType)
+        await getWalletAddress(storedWallet)
       }
       getAccount()
     }
@@ -93,10 +92,9 @@ export function useAccount(): UseAccountType {
   const onConnect = async (): Promise<void> => {
     if (!walletAddress) {
       // See https://github.com/Creit-Tech/Stellar-Wallets-Kit/tree/main for more options
-      await SWKKit.openModal({
-        allowedWallets,
+      await kit.openModal({
         onWalletSelected: async (option: ISupportedWallet) => {
-          await getWalletAddress(option.type)
+          await getWalletAddress(option.id)
         },
       })
     }

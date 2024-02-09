@@ -3,7 +3,7 @@ import { Icon, IconNames, InputPercentage, InputSlider, Tooltip } from 'componen
 import { ErrorText } from 'components/atoms/error-text'
 import { IReserves } from 'interfaces/soroban/liquidityPool'
 import { IToken } from 'interfaces/soroban/token'
-import { FunctionComponent, useState } from 'react'
+import { ChangeEvent, FormEvent, FunctionComponent, useState } from 'react'
 import { Utils } from 'shared/utils'
 import { liquidityPoolContract } from '../../../shared/contracts'
 import styles from './styles.module.scss'
@@ -66,12 +66,12 @@ const Withdraw: FunctionComponent<IWithdraw> = ({
       )
     : BigInt(0)
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target
     setFormValues({ ...formValues, [name]: value || 0 })
   }
 
-  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
+  const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault()
     setSubmitting(true)
     setError(false)

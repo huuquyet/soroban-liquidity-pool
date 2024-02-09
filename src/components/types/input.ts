@@ -1,3 +1,5 @@
+import {Ref, ChangeEvent, FocusEvent} from 'react'
+
 export interface IInputProps {
   /**
    * The HTML id of the component, if not provided the name prop will be used as a default
@@ -11,17 +13,17 @@ export interface IInputProps {
    * The React input ref
    * This ref usually is used to integrate with react-hook-forms
    */
-  ref: React.Ref<HTMLInputElement>
+  ref: Ref<HTMLInputElement>
   /**
    * The input on change event
    * This prop is required when you use react-hook-forms
    */
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   /**
    * The input on blur event
    * This prop is required when you use react-hook-forms
    */
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void
   /**
    * Classname to add custom css
    */

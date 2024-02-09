@@ -1,4 +1,5 @@
 import { Icon, IconNames, Tooltip } from 'components/atoms'
+import { ChangeEvent, FC } from 'react'
 import CurrencyFormat from 'react-currency-format'
 import styles from './styles.module.scss'
 
@@ -6,7 +7,7 @@ interface IInputPercentageProps {
   label: string
   name: string
   value: string
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void
   placeholder?: string
   decimalScale?: number
   prefix?: string
@@ -14,7 +15,7 @@ interface IInputPercentageProps {
   helpText?: string
 }
 
-const InputPercentage: React.FC<IInputPercentageProps> = (props: IInputPercentageProps) => {
+const InputPercentage: FC<IInputPercentageProps> = (props: IInputPercentageProps) => {
   return (
     <div>
       <div className={styles.label}>

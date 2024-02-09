@@ -5,6 +5,7 @@ import { NetworkData } from 'components/molecules'
 import { AccountData, LiquidityActions } from 'components/organisms'
 import { IReserves } from 'interfaces/soroban/liquidityPool'
 import { IToken } from 'interfaces/soroban/token'
+import { useEffect, useState } from 'react'
 import { Utils } from 'shared/utils'
 import {
   liquidityPoolContract,
@@ -17,26 +18,26 @@ import styles from './styles.module.scss'
 const Home = (): JSX.Element => {
   const { account, network, onConnect, onDisconnect } = useAccount()
 
-  const [updatedAt, setUpdatedAt] = React.useState<number>(Date.now())
-  const [tokenA, setTokenA] = React.useState<IToken>({
+  const [updatedAt, setUpdatedAt] = useState<number>(Date.now())
+  const [tokenA, setTokenA] = useState<IToken>({
     symbol: '',
     decimals: 7,
   })
-  const [tokenB, setTokenB] = React.useState<IToken>({
+  const [tokenB, setTokenB] = useState<IToken>({
     symbol: '',
     decimals: 7,
   })
-  const [shareToken, setShareToken] = React.useState<IToken>({
+  const [shareToken, setShareToken] = useState<IToken>({
     symbol: '',
     decimals: 7,
   })
-  const [reserves, setReserves] = React.useState<IReserves>({
+  const [reserves, setReserves] = useState<IReserves>({
     reservesA: BigInt(0),
     reservesB: BigInt(0),
   })
-  const [totalShares, setTotalShares] = React.useState<bigint>(BigInt(0))
+  const [totalShares, setTotalShares] = useState<bigint>(BigInt(0))
 
-  React.useEffect(() => {
+  useEffect(() => {
     Promise.all([
       tokenAContract.symbol(),
       tokenAContract.decimals(),
@@ -61,9 +62,9 @@ const Home = (): JSX.Element => {
         decimals: fetched[5].result,
       }))
     })
-  }, [setTokenA, setTokenB, setShareToken])
+  }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     Promise.all([liquidityPoolContract.getRsrvs(), liquidityPoolContract.getShares()]).then(
       (fetched) => {
         setReserves({
@@ -73,7 +74,7 @@ const Home = (): JSX.Element => {
         setTotalShares(fetched[1].result)
       }
     )
-    if (account.address) {
+    if (account?.address) {
       Promise.all([
         tokenAContract.balance({ id: account.address }),
         tokenBContract.balance({ id: account.address }),
@@ -93,7 +94,7 @@ const Home = (): JSX.Element => {
         }))
       })
     }
-  }, [setReserves, setTotalShares, setTokenA, setTokenB, setShareToken, account.address])
+  }, [account.address])
 
   return (
     <main>

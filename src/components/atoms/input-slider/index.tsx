@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ChangeEvent, FC, useState } from 'react'
 import Slider from 'react-input-slider'
 import styles from './styles.module.scss'
 
@@ -6,7 +6,7 @@ interface IInputSliderProps {
   label: string
   name: string
   value: string
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 interface ISliderChangeEvent {
@@ -16,7 +16,7 @@ interface ISliderChangeEvent {
   }
 }
 
-const InputSlider: React.FC<IInputSliderProps> = (props: IInputSliderProps) => {
+const InputSlider: FC<IInputSliderProps> = (props: IInputSliderProps) => {
   const [state, setState] = useState({ x: 0.0 })
 
   const handleSliderChange = ({ x }: { x: number }): void => {
@@ -28,7 +28,7 @@ const InputSlider: React.FC<IInputSliderProps> = (props: IInputSliderProps) => {
       },
     }
 
-    props.onChange(event as React.ChangeEvent<HTMLInputElement>)
+    props.onChange(event as ChangeEvent<HTMLInputElement>)
   }
 
   return (

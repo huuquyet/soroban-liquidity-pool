@@ -1,14 +1,15 @@
-import { RouteChildrenProps, RouteComponentProps } from 'react-router'
 import * as H from 'history'
+import { RouteChildrenProps, RouteComponentProps } from 'react-router'
+import { ComponentType, ReactNode, FunctionComponent } from 'react'
 
 export type RouteProps = {
   location?: H.Location
   component:
-  | React.ComponentType<RouteComponentProps<any>>
-    | React.ComponentType<any>
-    | React.FunctionComponent<any>
-  render?: (props: RouteComponentProps<any>) => React.ReactNode
-  ((props: RouteChildrenProps<any>) => React.ReactNode) | React.ReactNode
+  | ComponentType<RouteComponentProps<any>>
+    | ComponentType<any>
+    | FunctionComponent<any>
+  render?: (props: RouteComponentProps<any>) => ReactNode
+  ((props: RouteChildrenProps<any>) => ReactNode) | ReactNode
   path?: string
   exact?: boolean
   sensitive?: boolean
@@ -17,9 +18,9 @@ export type RouteProps = {
 
 export interface IAppRoute {
   component:
-  | React.ComponentType<RouteComponentProps<any>>
-    | React.ComponentType<any>
-    | React.FunctionComponent<any>
+  | ComponentType<RouteComponentProps<any>>
+    | ComponentType<any>
+    | FunctionComponent<any>
   path: string
   exact?: boolean
   isPrivate?: boolean

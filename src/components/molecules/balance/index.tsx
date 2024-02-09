@@ -1,6 +1,6 @@
 import { MintButton } from 'components/atoms'
 import { IMintFunction, IToken } from 'interfaces/soroban/token'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, SVGProps } from 'react'
 import { Utils } from 'shared/utils'
 import styles from './styles.module.scss'
 
@@ -8,7 +8,7 @@ interface IBalance {
   account: string
   token: IToken
   balance: bigint
-  icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  icon?: FunctionComponent<SVGProps<SVGSVGElement>>
   mint?: IMintFunction
   onUpdate: () => void
 }

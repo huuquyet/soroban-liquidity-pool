@@ -3,7 +3,7 @@ import { InputCurrency, InputPercentage } from 'components/atoms'
 import { ErrorText } from 'components/atoms/error-text'
 import { TokenAIcon, TokenBIcon } from 'components/icons'
 import { IToken } from 'interfaces/soroban/token'
-import { FunctionComponent, useState } from 'react'
+import { ChangeEvent, FormEvent, FunctionComponent, useState } from 'react'
 import { liquidityPoolContract } from '../../../shared/contracts'
 import styles from './styles.module.scss'
 
@@ -30,12 +30,12 @@ const Deposit: FunctionComponent<IDeposit> = ({ account, tokenA, tokenB, onUpdat
     maxSlippage: '0.5',
   })
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target
     setFormValues({ ...formValues, [name]: value || 0 })
   }
 
-  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
+  const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault()
     setSubmitting(true)
     setError(false)

@@ -1,3 +1,4 @@
+import { ChangeEvent, FC, FunctionComponent, SVGProps } from 'react'
 import CurrencyFormat from 'react-currency-format'
 import styles from './styles.module.scss'
 
@@ -6,15 +7,15 @@ interface IInputCurrencyProps {
   name: string
   value: string
   text?: string
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void
   placeholder?: string
   decimalScale?: number
   prefix?: string
   padding?: string
-  icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  icon?: FunctionComponent<SVGProps<SVGSVGElement>>
 }
 
-const InputCurrency: React.FC<IInputCurrencyProps> = (props: IInputCurrencyProps) => {
+const InputCurrency: FC<IInputCurrencyProps> = (props: IInputCurrencyProps) => {
   const Icon = props.icon
 
   return (

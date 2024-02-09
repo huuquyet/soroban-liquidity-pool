@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { FC, ReactNode, createContext, useContext, useState } from 'react'
 
 const AppContext = createContext({
   walletAddress: '',
@@ -7,7 +7,7 @@ const AppContext = createContext({
   setWalletAddress: (value: any) => value,
 })
 
-export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AppProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [walletAddress, setWalletAddress] = useState('')
   const [network, setNetwork] = useState('')
 

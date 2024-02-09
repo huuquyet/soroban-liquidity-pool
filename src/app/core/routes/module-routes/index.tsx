@@ -1,3 +1,4 @@
+import { ReactElement } from 'react'
 import PrivateRoute from '../private-route'
 import PublicRoute from '../public-route'
 import { IModuleRouteProps } from '../types'
@@ -6,7 +7,7 @@ const ModuleRoutes = ({
   routePrefix = '',
   routes,
   isAuthenticated,
-}: IModuleRouteProps): React.ReactElement => {
+}: IModuleRouteProps): ReactElement => {
   return (
     <>
       {routes.map(({ component, exact, path, isPrivate = false }) => {
