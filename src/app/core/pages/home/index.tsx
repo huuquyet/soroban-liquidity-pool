@@ -38,63 +38,65 @@ const Home = (): JSX.Element => {
   const [totalShares, setTotalShares] = useState<bigint>(BigInt(0))
 
   useEffect(() => {
-    Promise.all([
-      tokenAContract.symbol(),
-      tokenAContract.decimals(),
-      tokenBContract.symbol(),
-      tokenBContract.decimals(),
-      shareTokenContract.symbol(),
-      shareTokenContract.decimals(),
-    ]).then((fetched) => {
+    ;(async () => {
+      const tokenASymbol = await tokenAContract.symbol()
+      const tokenADecimals = await tokenAContract.decimals()
       setTokenA((prevTokenA) => ({
         ...prevTokenA,
-        symbol: fetched[0].result,
-        decimals: fetched[1].result,
+        symbol: tokenASymbol.result,
+        decimals: tokenADecimals.result,
       }))
+      const tokenBSymbol = await tokenBContract.symbol()
+      const tokenBDecimals = await tokenBContract.decimals()
       setTokenB((prevTokenB) => ({
         ...prevTokenB,
-        symbol: fetched[2].result,
-        decimals: fetched[3].result,
+        symbol: tokenBSymbol.result,
+        decimals: tokenBDecimals.result,
       }))
+      const shareTokenSymbol = await shareTokenContract.symbol()
+      const shareTokenDecimals = shareTokenContract.decimals()
       setShareToken((prevShareToken) => ({
         ...prevShareToken,
-        symbol: fetched[4].result,
-        decimals: fetched[5].result,
+        symbol: shareTokenSymbol.result,
+        decimals: shareTokenDecimals.result,
       }))
-    })
+    })()
   }, [])
 
   useEffect(() => {
-    Promise.all([liquidityPoolContract.getRsrvs(), liquidityPoolContract.getShares()]).then(
-      (fetched) => {
+    ;(async () => {
+      await liquidityPoolContract.getRsrvs().then((tx) =>
         setReserves({
-          reservesA: fetched[0].result[0],
-          reservesB: fetched[0].result[1],
+          reservesA: tx.result[0],
+          reservesB: tx.result[1],
         })
-        setTotalShares(fetched[1].result)
-      }
-    )
+      )
+      await liquidityPoolContract.getShares().then((tx) => setTotalShares(tx.result))
+    })()
+
     if (account?.address) {
-      Promise.all([
-        tokenAContract.balance({ id: account.address }),
-        tokenBContract.balance({ id: account.address }),
-        shareTokenContract.balance({ id: account.address }),
-      ]).then((fetched) => {
-        setTokenA((prevTokenA) => ({
-          ...prevTokenA,
-          balance: fetched[0].result,
-        }))
-        setTokenB((prevTokenB) => ({
-          ...prevTokenB,
-          balance: fetched[1].result,
-        }))
-        setShareToken((prevShareToken) => ({
-          ...prevShareToken,
-          balance: fetched[2].result,
-        }))
-      })
+      ;(async () => {
+        await tokenAContract.balance({ id: account.address }).then((tx) =>
+          setTokenA((prevTokenA) => ({
+            ...prevTokenA,
+            balance: tx.result,
+          }))
+        )
+        await tokenBContract.balance({ id: account.address }).then((tx) =>
+          setTokenB((prevTokenB) => ({
+            ...prevTokenB,
+            balance: tx.result,
+          }))
+        )
+        await shareTokenContract.balance({ id: account.address }).then((tx) =>
+          setShareToken((prevShareToken) => ({
+            ...prevShareToken,
+            balance: tx.result,
+          }))
+        )
+      })()
     }
-  }, [account.address])
+  }, [account?.address])
 
   return (
     <main>
