@@ -54,7 +54,7 @@ const Home = (): JSX.Element => {
         decimals: tokenBDecimals.result,
       }))
       const shareTokenSymbol = await shareTokenContract.symbol()
-      const shareTokenDecimals = shareTokenContract.decimals()
+      const shareTokenDecimals = await shareTokenContract.decimals()
       setShareToken((prevShareToken) => ({
         ...prevShareToken,
         symbol: shareTokenSymbol.result,
