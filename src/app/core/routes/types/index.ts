@@ -9,7 +9,7 @@ export type RouteProps = {
     | ComponentType<any>
     | FunctionComponent<any>
   render?: (props: RouteComponentProps<any>) => ReactNode
-  ((props: RouteChildrenProps<any>) => ReactNode) | ReactNode
+  children?: ((props: RouteChildrenProps<any>) => ReactNode) | ReactNode
   path?: string
   exact?: boolean
   sensitive?: boolean
