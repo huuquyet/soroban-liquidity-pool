@@ -27,4 +27,4 @@ export const shareTokenContract = new ShareToken.Contract({
   ...ShareToken.networks[network as keyof typeof ShareToken.networks],
 })
 
-export const server = SorobanRpc.Server(rpcUrl)
+export const server = new SorobanRpc.Server(rpcUrl)

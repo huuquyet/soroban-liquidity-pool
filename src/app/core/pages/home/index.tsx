@@ -77,21 +77,21 @@ const Home = (): JSX.Element => {
       await liquidityPoolContract.getShares().then((tx) => setTotalShares(tx.result))
     })()
 
-    if (account?.address) {
+    if (account) {
       ;(async () => {
-        await tokenAContract.balance({ id: account.address }).then((tx) =>
+        await tokenAContract.balance({ id: account }).then((tx) =>
           setTokenA((prevTokenA) => ({
             ...prevTokenA,
             balance: tx.result as i128,
           }))
         )
-        await tokenBContract.balance({ id: account.address }).then((tx) =>
+        await tokenBContract.balance({ id: account }).then((tx) =>
           setTokenB((prevTokenB) => ({
             ...prevTokenB,
             balance: tx.result as i128,
           }))
         )
-        await shareTokenContract.balance({ id: account.address }).then((tx) =>
+        await shareTokenContract.balance({ id: account }).then((tx) =>
           setShareToken((prevShareToken) => ({
             ...prevShareToken,
             balance: tx.result as i128,
@@ -99,7 +99,7 @@ const Home = (): JSX.Element => {
         )
       })()
     }
-  }, [account?.address])
+  }, [account, updatedAt])
 
   return (
     <main>
@@ -115,7 +115,6 @@ const Home = (): JSX.Element => {
           tokenB={tokenB}
           shareToken={shareToken}
           onUpdate={(): void => setUpdatedAt(Date.now())}
-          onWalletConnect={onConnect}
         />
         <div className={styles.poolContent}>
           {sorobanContext.activeChain && (
