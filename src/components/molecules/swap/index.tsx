@@ -6,7 +6,7 @@ import { SwapIcon, TokenAIcon, TokenBIcon } from 'components/icons'
 import { IReserves } from 'interfaces/soroban/liquidityPool'
 import { IToken } from 'interfaces/soroban/token'
 import { ChangeEvent, FormEvent, FunctionComponent, MouseEvent, useState } from 'react'
-import { liquidityPoolContract } from '../../../shared/contracts'
+import { liquidityPoolContract } from 'shared/contracts'
 import styles from './styles.module.scss'
 
 interface IFormValues {

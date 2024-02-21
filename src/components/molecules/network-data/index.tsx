@@ -1,30 +1,20 @@
+import { SorobanContextType } from '@soroban-react/core'
 import { ConnectButton } from 'components/atoms'
-import { DisconnectButton } from 'components/atoms/disconnect-button'
 import { FunctionComponent } from 'react'
 import styles from './styles.module.scss'
 
 interface INetworkDataProps {
-  network: string
-  account: string
-  onConnect: () => void
-  onDisconnect: () => void
+  sorobanContext: SorobanContextType
 }
 
-const NetworkData: FunctionComponent<INetworkDataProps> = ({
-  network,
-  account,
-  onConnect,
-  onDisconnect,
-}) => {
+const NetworkData: FunctionComponent<INetworkDataProps> = ({ sorobanContext }) => {
+  const { activeChain } = sorobanContext
   return (
     <>
-      {network && account ? (
-        <div className={styles.cardContainer}>
-          <div className={styles.card}>{network}</div>
-          <DisconnectButton label="Disconnect" onClick={onDisconnect} />
-        </div>
+      {activeChain ? (
+        <div className={styles.card}>{activeChain.name}</div>
       ) : (
-        <ConnectButton label="Connect Wallet" onClick={onConnect} />
+        <ConnectButton label="Connect Wallet" sorobanContext={sorobanContext} />
       )}
     </>
   )

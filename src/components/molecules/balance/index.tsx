@@ -9,7 +9,8 @@ interface IBalance {
   token: IToken
   balance: bigint
   icon?: FunctionComponent<SVGProps<SVGSVGElement>>
-  mint?: IMintFunction
+  tokenA?: boolean
+  mint?: boolean
   onUpdate: () => void
 }
 
@@ -18,9 +19,10 @@ const Balance: FunctionComponent<IBalance> = ({
   token,
   balance,
   icon,
+  tokenA,
   mint,
   onUpdate,
-}) => {
+}): IBalance => {
   const Icon = icon
 
   return (
@@ -32,7 +34,12 @@ const Balance: FunctionComponent<IBalance> = ({
       </div>
       {mint && (
         <div>
-          <MintButton account={account} decimals={token.decimals} mint={mint} onUpdate={onUpdate} />
+          <MintButton
+            account={account}
+            decimals={token.decimals}
+            tokenA={tokenA}
+            onUpdate={onUpdate}
+          />
         </div>
       )}
     </div>

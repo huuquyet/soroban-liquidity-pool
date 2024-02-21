@@ -1,28 +1,27 @@
+import { SorobanContextType } from '@soroban-react/core'
 import { ConnectButton } from 'components/atoms'
 import { TokenAIcon, TokenBIcon, TokenLPIcon } from 'components/icons'
 import { Balance } from 'components/molecules'
 import { IToken } from 'interfaces/soroban/token'
 import { FunctionComponent } from 'react'
-import { tokenAContract, tokenBContract } from '../../../shared/contracts'
 import styles from './styles.module.scss'
 
 interface IAccountData {
-  account: string
+  sorobanContext: SorobanContextType
   tokenA: IToken
   tokenB: IToken
   shareToken: IToken
   onUpdate: () => void
-  onWalletConnect: () => void
 }
 
 const AccountData: FunctionComponent<IAccountData> = ({
-  account,
+  sorobanContext,
   tokenA,
   tokenB,
   shareToken,
   onUpdate,
-  onWalletConnect,
 }) => {
+  const account = sorobanContext.address
   return (
     <div className={styles.card}>
       <h3>Account balance</h3>
@@ -35,7 +34,7 @@ const AccountData: FunctionComponent<IAccountData> = ({
           onUpdate={onUpdate}
         />
       ) : (
-        <ConnectButton label="Connect Wallet" onClick={onWalletConnect} />
+        <ConnectButton label="Connect Wallet" sorobanContext={sorobanContext} />
       )}
     </div>
   )
@@ -59,14 +58,17 @@ const BalanceData: FunctionComponent<IBalanceData> = ({
   return (
     <>
       <div className={styles.address}>
-        {`${account.substring(0, 10)}...${account.substring(account.length - 10)}`}
+        {`${account.toString().substring(0, 10)}...${account
+          .toString()
+          .substring(account.toString().length - 10)}`}
       </div>
       <div className={styles.balances}>
         <Balance
           account={account}
           token={tokenA}
           balance={tokenA.balance || BigInt(0)}
-          mint={tokenAContract.mint as any} // Using 'as any' type assertion
+          tokenA={true}
+          mint={true}
           icon={TokenAIcon}
           onUpdate={onUpdate}
         />
@@ -74,7 +76,8 @@ const BalanceData: FunctionComponent<IBalanceData> = ({
           account={account}
           token={tokenB}
           balance={tokenB.balance || BigInt(0)}
-          mint={tokenBContract.mint as any} // Using 'as any' type assertion
+          tokenA={false}
+          mint={true}
           icon={TokenBIcon}
           onUpdate={onUpdate}
         />
@@ -82,6 +85,7 @@ const BalanceData: FunctionComponent<IBalanceData> = ({
           account={account}
           token={shareToken}
           balance={shareToken.balance || BigInt(0)}
+          mint={false}
           icon={TokenLPIcon}
           onUpdate={onUpdate}
         />

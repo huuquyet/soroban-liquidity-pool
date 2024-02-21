@@ -1,3 +1,4 @@
+import { useSorobanReact } from '@soroban-react/core'
 import { useAccount } from 'app/core/hooks/useAccount'
 import classNames from 'classnames'
 import { TokenAIcon, TokenBIcon } from 'components/icons'
@@ -5,18 +6,20 @@ import { NetworkData } from 'components/molecules'
 import { AccountData, LiquidityActions } from 'components/organisms'
 import { IReserves } from 'interfaces/soroban/liquidityPool'
 import { IToken } from 'interfaces/soroban/token'
+import { AssembledTransaction, i128, u32 } from 'liquidity-pool-contract'
 import { useEffect, useState } from 'react'
-import { Utils } from 'shared/utils'
 import {
   liquidityPoolContract,
   shareTokenContract,
   tokenAContract,
   tokenBContract,
-} from '../../../../shared/contracts'
+} from 'shared/contracts'
+import { Utils } from 'shared/utils'
 import styles from './styles.module.scss'
 
 const Home = (): JSX.Element => {
-  const { account, network, onConnect, onDisconnect } = useAccount()
+  const sorobanContext = useSorobanReact()
+  const account = sorobanContext.address ? sorobanContext.address : ''
 
   const [updatedAt, setUpdatedAt] = useState<number>(Date.now())
   const [tokenA, setTokenA] = useState<IToken>({
@@ -79,19 +82,19 @@ const Home = (): JSX.Element => {
         await tokenAContract.balance({ id: account.address }).then((tx) =>
           setTokenA((prevTokenA) => ({
             ...prevTokenA,
-            balance: tx.result,
+            balance: tx.result as i128,
           }))
         )
         await tokenBContract.balance({ id: account.address }).then((tx) =>
           setTokenB((prevTokenB) => ({
             ...prevTokenB,
-            balance: tx.result,
+            balance: tx.result as i128,
           }))
         )
         await shareTokenContract.balance({ id: account.address }).then((tx) =>
           setShareToken((prevShareToken) => ({
             ...prevShareToken,
-            balance: tx.result,
+            balance: tx.result as i128,
           }))
         )
       })()
@@ -102,17 +105,12 @@ const Home = (): JSX.Element => {
     <main>
       <header className={styles.header}>
         <h3>Liquidity Pool Dapp</h3>
-        <NetworkData
-          network={network}
-          account={account?.address || ''}
-          onConnect={onConnect}
-          onDisconnect={onDisconnect}
-        />
+        <NetworkData sorobanContext={sorobanContext} />
       </header>
 
       <div className={styles.content}>
         <AccountData
-          account={account?.address || ''}
+          sorobanContext={sorobanContext}
           tokenA={tokenA}
           tokenB={tokenB}
           shareToken={shareToken}
@@ -120,7 +118,7 @@ const Home = (): JSX.Element => {
           onWalletConnect={onConnect}
         />
         <div className={styles.poolContent}>
-          {network && (
+          {sorobanContext.activeChain && (
             <>
               <div className={styles.poolName}>
                 <div>
@@ -155,7 +153,7 @@ const Home = (): JSX.Element => {
 
           {account ? (
             <LiquidityActions
-              account={account.address}
+              account={account}
               tokenA={tokenA}
               tokenB={tokenB}
               shareToken={shareToken}

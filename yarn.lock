@@ -12,13 +12,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@albedo-link/intent@npm:^0.12.0":
-  version: 0.12.0
-  resolution: "@albedo-link/intent@npm:0.12.0"
-  checksum: 10c0/8badc649499152c131b8b13fd37b35cd730359dfda76ced07f51bade5cdf71b3f8b37d5dd7316abb58e93c3e5e4b701972577587bf50faafa2e0391ae7aa3f50
-  languageName: node
-  linkType: hard
-
 "@ampproject/remapping@npm:^2.2.0":
   version: 2.2.1
   resolution: "@ampproject/remapping@npm:2.2.1"
@@ -1609,7 +1602,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@creit-tech/xbull-wallet-connect@github:Creit-Tech/xBull-Wallet-Connect#0.2.0":
+"@creit-tech/xbull-wallet-connect@github:Creit-Tech/xBull-Wallet-Connect":
   version: 0.2.0
   resolution: "@creit-tech/xbull-wallet-connect@https://github.com/Creit-Tech/xBull-Wallet-Connect.git#commit=a93e2e0d97c61bbd83fedcca0c71feef9f28b2d3"
   dependencies:
@@ -1617,19 +1610,6 @@ __metadata:
     tweetnacl: "npm:^1.0.3"
     tweetnacl-util: "npm:^0.15.1"
   checksum: 10c0/96c273da9e53ff5bd0f21b64c74f6614696c7b9417f5277e4ff9a2748f45b3ca5a1eb5596ba42f5f16a879d9a3cae13a7e7928314bb37cc47fb1d081be938c63
-  languageName: node
-  linkType: hard
-
-"@creit.tech/stellar-wallets-kit@npm:^0.6.1":
-  version: 0.6.1
-  resolution: "@creit.tech/stellar-wallets-kit@npm:0.6.1"
-  dependencies:
-    "@albedo-link/intent": "npm:^0.12.0"
-    "@creit-tech/xbull-wallet-connect": "github:Creit-Tech/xBull-Wallet-Connect#0.2.0"
-    "@stellar/freighter-api": "npm:1.7.0"
-    events: "npm:^3.3.0"
-    lit: "npm:^2.2.4"
-  checksum: 10c0/a1af2bfa5cd9747b1c72d2d240dedff108908f297664a1625a262568ae96d7eaba1099b982fa1efe1321fb67f64d5c2ee7659ae294d83227c14c3eda7fb8ca44
   languageName: node
   linkType: hard
 
@@ -2614,22 +2594,6 @@ __metadata:
   version: 3.4.0
   resolution: "@juggle/resize-observer@npm:3.4.0"
   checksum: 10c0/12930242357298c6f2ad5d4ec7cf631dfb344ca7c8c830ab7f64e6ac11eb1aae486901d8d880fd08fb1b257800c160a0da3aee1e7ed9adac0ccbb9b7c5d93347
-  languageName: node
-  linkType: hard
-
-"@lit-labs/ssr-dom-shim@npm:^1.0.0, @lit-labs/ssr-dom-shim@npm:^1.1.0":
-  version: 1.2.0
-  resolution: "@lit-labs/ssr-dom-shim@npm:1.2.0"
-  checksum: 10c0/016168cf6901ab343462c13fb168dda6d549f8b42680aa394e6b7cd0af7cce51271e00dbfa5bbbe388912bf89cbb8f941a21cc3ec9bf95d6a84b6241aa9e5a72
-  languageName: node
-  linkType: hard
-
-"@lit/reactive-element@npm:^1.3.0, @lit/reactive-element@npm:^1.6.0":
-  version: 1.6.3
-  resolution: "@lit/reactive-element@npm:1.6.3"
-  dependencies:
-    "@lit-labs/ssr-dom-shim": "npm:^1.0.0"
-  checksum: 10c0/10f1d25e24e32feb21c4c6f9e11d062901241602e12c4ecf746b3138f87fed4d8394194645514d5c1bfd5f33f3fd56ee8ef41344e2cb4413c40fe4961ec9d419
   languageName: node
   linkType: hard
 
@@ -3753,21 +3717,75 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stellar/freighter-api@npm:1.7.0":
-  version: 1.7.0
-  resolution: "@stellar/freighter-api@npm:1.7.0"
-  checksum: 10c0/2cf5df4bcae5c2d26593ed3d2eb7282dd955507dc5ad7f586ec09905667c3c587f57937c80103b3f7dff9dbb690e25a9f4614c3d061f8818e5556dab7e16882d
+"@soroban-react/chains@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "@soroban-react/chains@npm:9.0.0"
+  dependencies:
+    "@soroban-react/types": "npm:^9.0.0"
+    stellar-sdk: "npm:11.1.0"
+  checksum: 10c0/e51d224e2cd3461428042d59ad4920d5b75adf70e6a19b194836762a7cf80c0a6e877b7218cec8953832fb8b6235dcfc1774c757261fb58fe115327e27d476f1
   languageName: node
   linkType: hard
 
-"@stellar/freighter-api@npm:1.7.1":
+"@soroban-react/core@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "@soroban-react/core@npm:9.0.0"
+  dependencies:
+    "@soroban-react/freighter": "npm:^9.0.0"
+    "@soroban-react/types": "npm:^9.0.0"
+    "@soroban-react/xbull": "npm:^1.0.1"
+    stellar-sdk: "npm:11.1.0"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 10c0/855c056c14e2bbe4d93c070e7653ccfafdb90a3c8ce4b7f760c530c71fc667901c482f6af1b0b1f37a5ccb41acb75d19382fb348c8d5a01dfe68b7e997d0ffda
+  languageName: node
+  linkType: hard
+
+"@soroban-react/freighter@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "@soroban-react/freighter@npm:9.0.0"
+  dependencies:
+    "@soroban-react/types": "npm:^9.0.0"
+    "@stellar/freighter-api": "npm:1.7.1"
+  checksum: 10c0/02ceff26480ed55933e174d58a968d188b7a6cfa3949adf623b388dcdc9d526a5e091f83cc9585a92e3fc7ddad6c61e634399b9586bd6a09443e641b5f1eb054
+  languageName: node
+  linkType: hard
+
+"@soroban-react/types@npm:8.0.0":
+  version: 8.0.0
+  resolution: "@soroban-react/types@npm:8.0.0"
+  checksum: 10c0/a55f40d7c1abe792516720a8721b64a4b1ab0450bfbb0825fe8c89a789bd77e00019327397e41b983a504a257bbf2d85b64427ddba965b1b4d0e85982c8c943d
+  languageName: node
+  linkType: hard
+
+"@soroban-react/types@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "@soroban-react/types@npm:9.0.0"
+  checksum: 10c0/1cd5048f126dd824c89ca1b7bd2f903a5a54e5e6dfa6daac66249b42968c5b66f780a3be57d5299c2475cf82dabfe5fe8bc61807849098e7c7de1cdae1f92277
+  languageName: node
+  linkType: hard
+
+"@soroban-react/xbull@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@soroban-react/xbull@npm:1.0.1"
+  dependencies:
+    "@creit-tech/xbull-wallet-connect": "github:Creit-Tech/xBull-Wallet-Connect"
+    "@soroban-react/types": "npm:8.0.0"
+    stellar-sdk: "npm:11.1.0"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 10c0/c69afd913d82aebcc15f4f7bb7f2a9bc815db4e7103c626cc0f0411ef27b622aacd3b5f9e1cf8bd4e70efd684b92f0a92c1a35446d04b207c9f42922182707e1
+  languageName: node
+  linkType: hard
+
+"@stellar/freighter-api@npm:1.7.1, @stellar/freighter-api@npm:^1.7.1":
   version: 1.7.1
   resolution: "@stellar/freighter-api@npm:1.7.1"
   checksum: 10c0/f18ac804a5efb29609e3b599b0ab715a008f3c67313a3e9521dc5796ab834d50d1e28c1a1a60fb30266578329eb5fc09c1c9692d448744dae26d5fc193242f34
   languageName: node
   linkType: hard
 
-"@stellar/js-xdr@npm:^3.0.1":
+"@stellar/js-xdr@npm:^3.0.1, @stellar/js-xdr@npm:^3.1.0":
   version: 3.1.0
   resolution: "@stellar/js-xdr@npm:3.1.0"
   checksum: 10c0/1b483355e42fe0e982fd46e1652c3cad85747061f2a950b95f0ea929ade6107e24755d0a96dad6e47a6f24549a6b6689f34a133914b2334ef634dc81734f36c4
@@ -3792,6 +3810,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stellar/stellar-base@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "@stellar/stellar-base@npm:11.0.0"
+  dependencies:
+    "@stellar/js-xdr": "npm:^3.1.0"
+    base32.js: "npm:^0.1.0"
+    bignumber.js: "npm:^9.1.2"
+    buffer: "npm:^6.0.3"
+    sha.js: "npm:^2.3.6"
+    sodium-native: "npm:^4.0.8"
+    tweetnacl: "npm:^1.0.3"
+    typescript: "npm:^5.3.3"
+  dependenciesMeta:
+    sodium-native:
+      optional: true
+  checksum: 10c0/0d984ee36d2998a2850dce177f5c962f09ea2d8b0ef3c20b0cf62711eaee855b40dc8a37b369b43a787bbdcd766d703cbbe5eb137b0fe96d9483492fbcea3b97
+  languageName: node
+  linkType: hard
+
 "@stellar/stellar-sdk@npm:11.2.0":
   version: 11.2.0
   resolution: "@stellar/stellar-sdk@npm:11.2.0"
@@ -3804,6 +3841,22 @@ __metadata:
     toml: "npm:^3.0.0"
     urijs: "npm:^1.19.1"
   checksum: 10c0/a3470cd18276d8007a39bd2706cb5d8000bb16000635dd34f7e35a09ba2c7248a6d8250ec0c3c309cbdc82d40e318a8f851962c6b6d033abdb9f5c01e96e943c
+  languageName: node
+  linkType: hard
+
+"@stellar/stellar-sdk@npm:^11.2.2":
+  version: 11.2.2
+  resolution: "@stellar/stellar-sdk@npm:11.2.2"
+  dependencies:
+    "@stellar/stellar-base": "npm:^11.0.0"
+    axios: "npm:^1.6.7"
+    bignumber.js: "npm:^9.1.2"
+    eventsource: "npm:^2.0.2"
+    randombytes: "npm:^2.1.0"
+    toml: "npm:^3.0.0"
+    typescript: "npm:^5.3.3"
+    urijs: "npm:^1.19.1"
+  checksum: 10c0/51a1ffec39c2d8bf7d6358ad3cb49170a8094500b0027beb0fdb19d0e12f4a5f938fedcde14dc964cd6362a0cc001cba325d2bc81b04f127dc589edf3124a04c
   languageName: node
   linkType: hard
 
@@ -5285,13 +5338,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/trusted-types@npm:^2.0.2":
-  version: 2.0.7
-  resolution: "@types/trusted-types@npm:2.0.7"
-  checksum: 10c0/4c4855f10de7c6c135e0d32ce462419d8abbbc33713b31d294596c0cc34ae1fa6112a2f9da729c8f7a20707782b0d69da3b1f8df6645b0366d08825ca1522e0c
-  languageName: node
-  linkType: hard
-
 "@types/unist@npm:*, @types/unist@npm:^3.0.0":
   version: 3.0.2
   resolution: "@types/unist@npm:3.0.2"
@@ -5710,7 +5756,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.5, axios@npm:^1.6.7":
+"axios@npm:^1.6.0, axios@npm:^1.6.5, axios@npm:^1.6.7":
   version: 1.6.7
   resolution: "axios@npm:1.6.7"
   dependencies:
@@ -7421,13 +7467,6 @@ __metadata:
   version: 1.8.1
   resolution: "etag@npm:1.8.1"
   checksum: 10c0/12be11ef62fb9817314d790089a0a49fae4e1b50594135dcb8076312b7d7e470884b5100d249b28c18581b7fd52f8b485689ffae22a11ed9ec17377a33a08f84
-  languageName: node
-  linkType: hard
-
-"events@npm:^3.3.0":
-  version: 3.3.0
-  resolution: "events@npm:3.3.0"
-  checksum: 10c0/d6b6f2adbccbcda74ddbab52ed07db727ef52e31a61ed26db9feb7dc62af7fc8e060defa65e5f8af9449b86b52cc1a1f6a79f2eafcf4e62add2b7a1fa4a432f6
   languageName: node
   linkType: hard
 
@@ -9611,37 +9650,6 @@ __metadata:
     "@stellar/stellar-sdk": "npm:11.2.0"
     buffer: "npm:6.0.3"
   checksum: 10c0/7916023dc75ced2e5ccdb7559ac732c9b5cdc224a6374e929ceb9cfe640d56a6eea1e52e8ff3357df619d1b3dc130b1becbf347f19e82b3292baf50b9ee5c61d
-  languageName: node
-  linkType: hard
-
-"lit-element@npm:^3.3.0":
-  version: 3.3.3
-  resolution: "lit-element@npm:3.3.3"
-  dependencies:
-    "@lit-labs/ssr-dom-shim": "npm:^1.1.0"
-    "@lit/reactive-element": "npm:^1.3.0"
-    lit-html: "npm:^2.8.0"
-  checksum: 10c0/f44c12fa3423a4e9ca5b84651410687e14646bb270ac258325e6905affac64a575f041f8440377e7ebaefa3910b6f0d6b8b1e902cb1aa5d0849b3fdfbf4fb3b6
-  languageName: node
-  linkType: hard
-
-"lit-html@npm:^2.8.0":
-  version: 2.8.0
-  resolution: "lit-html@npm:2.8.0"
-  dependencies:
-    "@types/trusted-types": "npm:^2.0.2"
-  checksum: 10c0/90057dee050803823ac884c1355b0213ab8c05fbe2ec63943c694b61aade5d36272068f3925f45a312835e504f9c9784738ef797009f0a756a750351eafb52d5
-  languageName: node
-  linkType: hard
-
-"lit@npm:^2.2.4":
-  version: 2.8.0
-  resolution: "lit@npm:2.8.0"
-  dependencies:
-    "@lit/reactive-element": "npm:^1.6.0"
-    lit-element: "npm:^3.3.0"
-    lit-html: "npm:^2.8.0"
-  checksum: 10c0/bf33c26b1937ee204aed1adbfa4b3d43a284e85aad8ea9763c7865365917426eded4e5888158b4136095ea42054812561fe272862b61775f1198fad3588b071f
   languageName: node
   linkType: hard
 
@@ -12483,17 +12491,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sodium-native@npm:^4.0.8":
+  version: 4.0.10
+  resolution: "sodium-native@npm:4.0.10"
+  dependencies:
+    node-gyp: "npm:latest"
+    node-gyp-build: "npm:^4.6.0"
+  checksum: 10c0/95fcc84a3b4589833a41ac9e6abebb719978bbdc50945cf4e78df87d0273f021e1f4079d9b788dca563b34ceb9d83d0d2aab12448da66af9c489fe30bcadc0c1
+  languageName: node
+  linkType: hard
+
 "soroban-liquidity-pool@workspace:.":
   version: 0.0.0-use.local
   resolution: "soroban-liquidity-pool@workspace:."
   dependencies:
     "@biomejs/biome": "npm:^1.5.3"
-    "@creit.tech/stellar-wallets-kit": "npm:^0.6.1"
     "@emotion/react": "npm:^11.11.3"
     "@emotion/styled": "npm:^11.11.0"
     "@mui/lab": "npm:^5.0.0-alpha.165"
     "@mui/material": "npm:^5.15.10"
     "@sentry/react": "npm:^7.102.0"
+    "@soroban-react/chains": "npm:^9.0.0"
+    "@soroban-react/core": "npm:^9.0.0"
+    "@soroban-react/freighter": "npm:^9.0.0"
+    "@soroban-react/types": "npm:^9.0.0"
+    "@stellar/freighter-api": "npm:^1.7.1"
+    "@stellar/stellar-sdk": "npm:^11.2.2"
     "@storybook/addon-a11y": "npm:^7.6.17"
     "@storybook/addon-docs": "npm:^7.6.17"
     "@storybook/addon-essentials": "npm:^7.6.17"
@@ -12647,6 +12670,21 @@ __metadata:
   version: 2.0.1
   resolution: "statuses@npm:2.0.1"
   checksum: 10c0/34378b207a1620a24804ce8b5d230fea0c279f00b18a7209646d5d47e419d1cc23e7cbf33a25a1e51ac38973dc2ac2e1e9c647a8e481ef365f77668d72becfd0
+  languageName: node
+  linkType: hard
+
+"stellar-sdk@npm:11.1.0":
+  version: 11.1.0
+  resolution: "stellar-sdk@npm:11.1.0"
+  dependencies:
+    "@stellar/stellar-base": "npm:10.0.1"
+    axios: "npm:^1.6.0"
+    bignumber.js: "npm:^9.1.2"
+    eventsource: "npm:^2.0.2"
+    randombytes: "npm:^2.1.0"
+    toml: "npm:^3.0.0"
+    urijs: "npm:^1.19.1"
+  checksum: 10c0/07718ead15a496a589281ee8e9575486f5f2152fd3408f97800961955ede5aeefc10a7192dddaf14e9b6a5a3bde69cb31796beacd0d8c4d5f93af5b4e5cd2aaa
   languageName: node
   linkType: hard
 

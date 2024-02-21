@@ -4,8 +4,8 @@ import { ErrorText } from 'components/atoms/error-text'
 import { IReserves } from 'interfaces/soroban/liquidityPool'
 import { IToken } from 'interfaces/soroban/token'
 import { ChangeEvent, FormEvent, FunctionComponent, useState } from 'react'
+import { liquidityPoolContract } from 'shared/contracts'
 import { Utils } from 'shared/utils'
-import { liquidityPoolContract } from '../../../shared/contracts'
 import styles from './styles.module.scss'
 
 interface IFormValues {

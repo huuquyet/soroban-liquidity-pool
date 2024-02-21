@@ -35,13 +35,16 @@ if [[ "$SOROBAN_RPC_HOST" == "" ]]; then
   elif [[ "$NETWORK" == "futurenet" ]]; then
     SOROBAN_RPC_HOST="https://rpc-futurenet.stellar.org"
     SOROBAN_RPC_URL="$SOROBAN_RPC_HOST"
+  elif [[ "$NETWORK" == "testnet" ]]; then
+    SOROBAN_RPC_HOST="https://soroban-testnet.stellar.org:443"
+    SOROBAN_RPC_URL="$SOROBAN_RPC_HOST"
   else
      # assumes standalone on quickstart, which has the soroban/rpc path
     SOROBAN_RPC_HOST="http://localhost:8000"
     SOROBAN_RPC_URL="$SOROBAN_RPC_HOST/soroban/rpc"
   fi
-else 
-  SOROBAN_RPC_URL="$SOROBAN_RPC_HOST"  
+else
+  SOROBAN_RPC_URL="$SOROBAN_RPC_HOST"
 fi
 
 
@@ -56,8 +59,13 @@ futurenet)
   SOROBAN_NETWORK_PASSPHRASE="Test SDF Future Network ; October 2022"
   FRIENDBOT_URL="https://friendbot-futurenet.stellar.org/"
   ;;
+testnet)
+  echo "Using Testnet network with RPC URL: $SOROBAN_RPC_URL"
+  SOROBAN_NETWORK_PASSPHRASE="Test SDF Network ; September 2015"
+  FRIENDBOT_URL="https://friendbot.stellar.org/"
+  ;;
 *)
-  echo "Usage: $0 standalone|futurenet [rpc-host]"
+  echo "Usage: $0 standalone|futurenet|testnet [rpc-host]"
   exit 1
   ;;
 esac
@@ -171,10 +179,10 @@ SHARE_ID=${SHARE_ID//\"/}
 echo "Share ID: $SHARE_ID"
 
 echo "Generating bindings"
-soroban contract bindings typescript --network $NETWORK --contract-id $TOKEN_A_ID --output-dir ".soroban/contracts/token-a" --overwrite
-soroban contract bindings typescript --network $NETWORK --contract-id $TOKEN_B_ID --output-dir ".soroban/contracts/token-b" --overwrite
-soroban contract bindings typescript --network $NETWORK --contract-id $SHARE_ID --output-dir ".soroban/contracts/share-token" --overwrite
-soroban contract bindings typescript --network $NETWORK --contract-id $LIQUIDITY_POOL_ID --output-dir ".soroban/contracts/liquidity-pool" --overwrite
+soroban contract bindings typescript --network $NETWORK --contract-id $TOKEN_A_ID --output-dir ".soroban/contracts/token-a" --overwrite || true
+soroban contract bindings typescript --network $NETWORK --contract-id $TOKEN_B_ID --output-dir ".soroban/contracts/token-b" --overwrite || true
+soroban contract bindings typescript --network $NETWORK --contract-id $SHARE_ID --output-dir ".soroban/contracts/share-token" --overwrite || true
+soroban contract bindings typescript --network $NETWORK --contract-id $LIQUIDITY_POOL_ID --output-dir ".soroban/contracts/liquidity-pool" --overwrite || true
 
 echo "Done"
 

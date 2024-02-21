@@ -4,6 +4,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import reportWebVitals from './config/reportWebVitals'
 import './index.css'
+import MySorobanReactProvider from './soroban/provider'
 
 Sentry.init({
   dsn: import.meta.env.VITE_SENTRY_DSN,
@@ -16,7 +17,9 @@ Sentry.init({
 // ref: https://react.dev/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <MySorobanReactProvider>
+      <App />
+    </MySorobanReactProvider>
   </StrictMode>
 )
 

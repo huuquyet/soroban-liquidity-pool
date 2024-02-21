@@ -13,6 +13,7 @@
       "**/.soroban",
       "**/.jest",
       "**/.storybook",
+      "**/.vercel",
       "**/dist",
       "**/types",
       "**/public",

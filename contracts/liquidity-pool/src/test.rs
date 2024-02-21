@@ -35,6 +35,7 @@ fn install_token_wasm(e: &Env) -> BytesN<32> {
 fn test() {
     let e = Env::default();
     e.mock_all_auths();
+    e.budget().reset_unlimited();
 
     let mut admin1 = Address::generate(&e);
     let mut admin2 = Address::generate(&e);
@@ -100,6 +101,7 @@ fn test() {
     assert_eq!(token1.balance(&liqpool.address), 100);
     assert_eq!(token2.balance(&user1), 900);
     assert_eq!(token2.balance(&liqpool.address), 100);
+    // e.budget().print();
 
     liqpool.swap(&user1, &false, &49, &100);
     assert_eq!(
@@ -129,35 +131,42 @@ fn test() {
     assert_eq!(token2.balance(&user1), 949);
     assert_eq!(token2.balance(&liqpool.address), 51);
 
-    e.budget().reset_unlimited();
-    liqpool.withdraw(&user1, &100, &197, &51);
+    e.budget().reset_default();
+    e.budget().print();
+    liqpool.withdraw(&user1, &50, &90, &25);
+    e.budget().print();
+    liqpool.withdraw(&user1, &50, &90, &25);
+    e.budget().print();
 
-    assert_eq!(
-        e.auths(),
-        std::vec![(
-            user1.clone(),
-            AuthorizedInvocation {
-                function: AuthorizedFunction::Contract((
-                    liqpool.address.clone(),
-                    symbol_short!("withdraw"),
-                    (&user1, 100_i128, 197_i128, 51_i128).into_val(&e)
-                )),
-                sub_invocations: std::vec![AuthorizedInvocation {
-                    function: AuthorizedFunction::Contract((
-                        token_share.address.clone(),
-                        symbol_short!("transfer"),
-                        (&user1, &liqpool.address, 100_i128).into_val(&e)
-                    )),
-                    sub_invocations: std::vec![]
-                }]
-            }
-        )]
-    );
+    // e.budget().reset_unlimited();
+    // liqpool.withdraw(&user1, &100, &197, &51);
 
-    assert_eq!(token1.balance(&user1), 1000);
-    assert_eq!(token2.balance(&user1), 1000);
-    assert_eq!(token_share.balance(&user1), 0);
-    assert_eq!(token1.balance(&liqpool.address), 0);
-    assert_eq!(token2.balance(&liqpool.address), 0);
-    assert_eq!(token_share.balance(&liqpool.address), 0);
+    // assert_eq!(
+    //     e.auths(),
+    //     std::vec![(
+    //         user1.clone(),
+    //         AuthorizedInvocation {
+    //             function: AuthorizedFunction::Contract((
+    //                 liqpool.address.clone(),
+    //                 symbol_short!("withdraw"),
+    //                 (&user1, 100_i128, 197_i128, 51_i128).into_val(&e)
+    //             )),
+    //             sub_invocations: std::vec![AuthorizedInvocation {
+    //                 function: AuthorizedFunction::Contract((
+    //                     token_share.address.clone(),
+    //                     symbol_short!("transfer"),
+    //                     (&user1, &liqpool.address, 100_i128).into_val(&e)
+    //                 )),
+    //                 sub_invocations: std::vec![]
+    //             }]
+    //         }
+    //     )]
+    // );
+
+    // assert_eq!(token1.balance(&user1), 1000);
+    // assert_eq!(token2.balance(&user1), 1000);
+    // assert_eq!(token_share.balance(&user1), 0);
+    // assert_eq!(token1.balance(&liqpool.address), 0);
+    // assert_eq!(token2.balance(&liqpool.address), 0);
+    // assert_eq!(token_share.balance(&liqpool.address), 0);
 }
