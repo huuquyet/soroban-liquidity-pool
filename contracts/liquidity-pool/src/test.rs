@@ -1,7 +1,10 @@
 #![cfg(test)]
 extern crate std;
 
-use crate::{token, LiquidityPoolClient};
+use crate::{
+    contract::{LiquidityPool, LiquidityPoolClient},
+    token,
+};
 
 use soroban_sdk::{
     symbol_short,
@@ -19,7 +22,7 @@ fn create_liqpool_contract<'a>(
     token_a: &Address,
     token_b: &Address,
 ) -> LiquidityPoolClient<'a> {
-    let liqpool = LiquidityPoolClient::new(e, &e.register_contract(None, crate::LiquidityPool {}));
+    let liqpool = LiquidityPoolClient::new(e, &e.register_contract(None, LiquidityPool {}));
     liqpool.initialize(token_wasm_hash, token_a, token_b);
     liqpool
 }
