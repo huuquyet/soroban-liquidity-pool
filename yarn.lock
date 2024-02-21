@@ -8811,14 +8811,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ip@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "ip@npm:2.0.0"
-  checksum: 10c0/8d186cc5585f57372847ae29b6eba258c68862055e18a75cc4933327232cb5c107f89800ce29715d542eef2c254fbb68b382e780a7414f9ee7caf60b7a473958
-  languageName: node
-  linkType: hard
-
-"ip@npm:^2.0.1":
+"ip@npm:^2.0.0, ip@npm:^2.0.1":
   version: 2.0.1
   resolution: "ip@npm:2.0.1"
   checksum: 10c0/cab8eb3e88d0abe23e4724829621ec4c4c5cb41a7f936a2e626c947128c1be16ed543448d42af7cca95379f9892bfcacc1ccd8d09bc7e8bea0e86d492ce33616
@@ -9983,12 +9976,12 @@ __metadata:
 
 "liquidity-pool-contract@file:.soroban/contracts/liquidity-pool::locator=soroban-liquidity-pool%40workspace%3A.":
   version: 0.0.0
-  resolution: "liquidity-pool-contract@file:.soroban/contracts/liquidity-pool#.soroban/contracts/liquidity-pool::hash=5164b9&locator=soroban-liquidity-pool%40workspace%3A."
+  resolution: "liquidity-pool-contract@file:.soroban/contracts/liquidity-pool#.soroban/contracts/liquidity-pool::hash=e4d404&locator=soroban-liquidity-pool%40workspace%3A."
   dependencies:
     "@stellar/freighter-api": "npm:1.7.1"
     "@stellar/stellar-sdk": "npm:11.2.0"
     buffer: "npm:6.0.3"
-  checksum: 10c0/afac2418fa1460a9980de033a75cff3037c994e13ae38eb830d466cbd653f34f17ec0a30044c29cb327d1fe85665fdf3caa5e5252c807c97c32f0fd53a9f6d79
+  checksum: 10c0/c975c4521d3cb1b7042818b0fec8594970f750ef7e9563d0c650eae2a9d55c9a514c2289e74b4ffdbc0988fa73ef30292a4f288cd4593dd0803ae1f75c4fe251
   languageName: node
   linkType: hard
 
@@ -12901,12 +12894,12 @@ __metadata:
 
 "share-token-contract@file:.soroban/contracts/share-token::locator=soroban-liquidity-pool%40workspace%3A.":
   version: 0.0.0
-  resolution: "share-token-contract@file:.soroban/contracts/share-token#.soroban/contracts/share-token::hash=879150&locator=soroban-liquidity-pool%40workspace%3A."
+  resolution: "share-token-contract@file:.soroban/contracts/share-token#.soroban/contracts/share-token::hash=84a503&locator=soroban-liquidity-pool%40workspace%3A."
   dependencies:
     "@stellar/freighter-api": "npm:1.7.1"
     "@stellar/stellar-sdk": "npm:11.2.0"
     buffer: "npm:6.0.3"
-  checksum: 10c0/cf3a6d83a4cf316eb1742519acfd12419f50e002ac51ccfe561bb2eba4b8385f7bd0afa618b940d1b56b1bab7d3cccfee50f8cda66addd18c913ef180999ef40
+  checksum: 10c0/ef2d26627890e586558d8e264bc0c9d53e86197e4774dc5a9656a3a1a1a3e9bb113eb6835f804b95b1011948f471d1f6aae7670bd04542768861db0f25997f41
   languageName: node
   linkType: hard
 
@@ -13611,23 +13604,23 @@ __metadata:
 
 "token-a-contract@file:.soroban/contracts/token-a::locator=soroban-liquidity-pool%40workspace%3A.":
   version: 0.0.0
-  resolution: "token-a-contract@file:.soroban/contracts/token-a#.soroban/contracts/token-a::hash=902671&locator=soroban-liquidity-pool%40workspace%3A."
+  resolution: "token-a-contract@file:.soroban/contracts/token-a#.soroban/contracts/token-a::hash=bbb757&locator=soroban-liquidity-pool%40workspace%3A."
   dependencies:
     "@stellar/freighter-api": "npm:1.7.1"
     "@stellar/stellar-sdk": "npm:11.2.0"
     buffer: "npm:6.0.3"
-  checksum: 10c0/365e5d6628b1ae52e91610ae264f6356d70385799dd7edca8827a6ad33cfce8dabfb0c33c88586d23fad65db0194d946d56aae0ac50ad1ca07f3757729da9e52
+  checksum: 10c0/819997a1ac8d94243c6725f2bc4a67aec4b8c8e651b956eeb5d01b5a030434dde8f485f09fff54e1f9e0df5e7882c578627ae570e435e93dfb080c3fba28d321
   languageName: node
   linkType: hard
 
 "token-b-contract@file:.soroban/contracts/token-b::locator=soroban-liquidity-pool%40workspace%3A.":
   version: 0.0.0
-  resolution: "token-b-contract@file:.soroban/contracts/token-b#.soroban/contracts/token-b::hash=3eff8f&locator=soroban-liquidity-pool%40workspace%3A."
+  resolution: "token-b-contract@file:.soroban/contracts/token-b#.soroban/contracts/token-b::hash=4e5739&locator=soroban-liquidity-pool%40workspace%3A."
   dependencies:
     "@stellar/freighter-api": "npm:1.7.1"
     "@stellar/stellar-sdk": "npm:11.2.0"
     buffer: "npm:6.0.3"
-  checksum: 10c0/69aca8107a6e7dcc10d99681cfe5d4b46c9efee12e01322804aa2eb25e172e869b2e8e74d42be2e69ca4d381818a6b12e97c0b903aff8a23042ab080418385d0
+  checksum: 10c0/827db6dbb04dd3a1ee276bb3298e1357fecd75afc740dbe11e42c9b2bad2960743ce8d0264072610e27322388036a123e191579ec040659f65a7282697107f18
   languageName: node
   linkType: hard
 
