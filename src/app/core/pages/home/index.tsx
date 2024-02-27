@@ -6,7 +6,6 @@ import { NetworkData } from 'components/molecules'
 import { AccountData, LiquidityActions } from 'components/organisms'
 import { IReserves } from 'interfaces/soroban/liquidityPool'
 import { IToken } from 'interfaces/soroban/token'
-import { AssembledTransaction, i128, u32 } from 'liquidity-pool-contract'
 import { useEffect, useState } from 'react'
 import {
   liquidityPoolContract,
@@ -82,19 +81,19 @@ const Home = (): JSX.Element => {
         await tokenAContract.balance({ id: account }).then((tx) =>
           setTokenA((prevTokenA) => ({
             ...prevTokenA,
-            balance: tx.result as i128,
+            balance: tx.result,
           }))
         )
         await tokenBContract.balance({ id: account }).then((tx) =>
           setTokenB((prevTokenB) => ({
             ...prevTokenB,
-            balance: tx.result as i128,
+            balance: tx.result,
           }))
         )
         await shareTokenContract.balance({ id: account }).then((tx) =>
           setShareToken((prevShareToken) => ({
             ...prevShareToken,
-            balance: tx.result as i128,
+            balance: tx.result,
           }))
         )
       })()
