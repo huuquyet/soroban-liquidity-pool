@@ -1,10 +1,10 @@
 import { Meta, Story } from '@storybook/react'
 import { IIconProps, Icon, IconNames } from '.'
 
-export default ({
+export default {
   title: 'Atoms/Icon',
   component: Icon,
-} as Meta)
+} as Meta
 
 const Template: Story<IIconProps> = (args) => <Icon {...args} />
 

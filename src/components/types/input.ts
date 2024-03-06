@@ -1,4 +1,4 @@
-import {Ref, ChangeEvent, FocusEvent} from 'react'
+import { ChangeEvent, FocusEvent, Ref } from 'react'
 
 export interface IInputProps {
   /**
