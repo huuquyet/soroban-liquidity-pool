@@ -2,11 +2,9 @@
 
 set -e
 
-NETWORK="$1"
+NETWORK=$1
 
-SOROBAN_RPC_HOST="$2"
-
-PATH=./target/bin:$PATH
+SOROBAN_RPC_HOST=$2
 
 if [[ -d "./.soroban/contracts" ]]; then
   echo "Found existing './.soroban/contracts' directory; already initialized."
@@ -22,23 +20,18 @@ else
   cargo install_soroban
 fi
 
-if [[ "$SOROBAN_RPC_HOST" == "" ]]; then
-  if [[ "$NETWORK" == "futurenet" ]]; then
-    SOROBAN_RPC_HOST="https://rpc-futurenet.stellar.org"
-    SOROBAN_RPC_URL="$SOROBAN_RPC_HOST"
-  elif [[ "$NETWORK" == "testnet" ]]; then
-    SOROBAN_RPC_HOST="https://soroban-testnet.stellar.org"
-    SOROBAN_RPC_URL="$SOROBAN_RPC_HOST"
-  else
-     # assumes standalone on quickstart, which has the soroban/rpc path
-    SOROBAN_RPC_HOST="http://localhost:8000"
-    SOROBAN_RPC_URL="$SOROBAN_RPC_HOST/soroban/rpc"
-  fi
+if [[ $SOROBAN_RPC_HOST != "" ]]; then
+  SOROBAN_RPC_URL=$SOROBAN_RPC_HOST
+elif [[ $NETWORK == "futurenet" ]]; then
+  SOROBAN_RPC_URL="https://rpc-futurenet.stellar.org"
+elif [[ $NETWORK == "testnet" ]]; then
+  SOROBAN_RPC_URL="https://soroban-testnet.stellar.org"
 else
-  SOROBAN_RPC_URL="$SOROBAN_RPC_HOST"
+    # assumes standalone on quickstart, which has the soroban/rpc path
+  SOROBAN_RPC_URL="http://localhost:8000/soroban/rpc"
 fi
 
-case "$1" in
+case $NETWORK in
 futurenet)
   echo "Using Futurenet network with RPC URL: $SOROBAN_RPC_URL"
   SOROBAN_NETWORK_PASSPHRASE="Test SDF Future Network ; October 2022"
@@ -58,22 +51,22 @@ standalone)
 esac
 
 echo "Add the $NETWORK network to cli client"
-soroban config network add \
-  --rpc-url "$SOROBAN_RPC_URL" \
-  --network-passphrase "$SOROBAN_NETWORK_PASSPHRASE" "$NETWORK"
+soroban network add \
+  --rpc-url $SOROBAN_RPC_URL \
+  --network-passphrase "$SOROBAN_NETWORK_PASSPHRASE" $NETWORK
 
 echo "Add the $NETWORK network to shared config"
 echo "{ \"network\": \"$NETWORK\", \"rpcUrl\": \"$SOROBAN_RPC_URL\", \"networkPassphrase\": \"$SOROBAN_NETWORK_PASSPHRASE\" }" > ./src/shared/config.json
 
-if !(soroban config identity ls | grep token-admin 2>&1 >/dev/null); then
+if !(soroban keys ls | grep token-admin 2>&1 >/dev/null); then
   echo "Create the token-admin identity"
-  soroban config identity generate token-admin --network $NETWORK
+  soroban keys generate token-admin --network $NETWORK
 fi
 mkdir -p .soroban
 
 # This will fail if the account already exists, but it'll still be fine.
 echo "Fund token-admin account from friendbot"
-soroban config identity fund token-admin --network $NETWORK
+soroban keys fund token-admin --network $NETWORK
 
 ARGS="--network $NETWORK --source token-admin"
 
@@ -110,7 +103,7 @@ LIQUIDITY_POOL_ID="$(
 )"
 echo "Liquidity Pool contract deployed succesfully with ID: $LIQUIDITY_POOL_ID"
 
-if [[ "$TOKEN_B_ID" < "$TOKEN_A_ID" ]]; then
+if [[ $TOKEN_B_ID < $TOKEN_A_ID ]]; then
   echo "Changing tokens order"
   OLD_TOKEN_A_ID=$TOKEN_A_ID
   TOKEN_A_ID=$TOKEN_B_ID
@@ -120,7 +113,7 @@ fi
 echo "Initialize the abundance token A contract"
 soroban contract invoke \
   $ARGS \
-  --id "$TOKEN_A_ID" \
+  --id $TOKEN_A_ID \
   -- \
   initialize \
   --symbol USDC \
@@ -132,7 +125,7 @@ soroban contract invoke \
 echo "Initialize the abundance token B contract"
 soroban contract invoke \
   $ARGS \
-  --id "$TOKEN_B_ID" \
+  --id $TOKEN_B_ID \
   -- \
   initialize \
   --symbol BTC \
@@ -149,17 +142,17 @@ TOKEN_WASM_HASH="$(
 echo "Initialize the liquidity pool contract"
 soroban contract invoke \
   $ARGS \
-  --id "$LIQUIDITY_POOL_ID" \
+  --id $LIQUIDITY_POOL_ID \
   -- \
   initialize \
-  --token_wasm_hash "$TOKEN_WASM_HASH" \
-  --token_a "$TOKEN_A_ID" \
-  --token_b "$TOKEN_B_ID"
+  --token_wasm_hash $TOKEN_WASM_HASH \
+  --token_a $TOKEN_A_ID \
+  --token_b $TOKEN_B_ID
 
 echo "Getting the share id"
 SHARE_ID="$(soroban contract invoke \
   $ARGS \
-  --id "$LIQUIDITY_POOL_ID" \
+  --id $LIQUIDITY_POOL_ID \
   -- \
   share_id
 )"
