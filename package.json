@@ -30,7 +30,7 @@
     "@soroban-react/types": "^9.0.2",
     "@stellar/freighter-api": "^1.7.1",
     "@stellar/stellar-sdk": "^11.2.2",
-    "axios": "^1.7.4",
+    "axios": "^1.7.8",
     "classnames": "^2.5.1",
     "liquidity-pool-contract": "file:.soroban/contracts/liquidity-pool",
     "react": "^18.2.0",
