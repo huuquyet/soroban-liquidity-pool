@@ -5825,14 +5825,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.7.9":
-  version: 1.7.9
-  resolution: "axios@npm:1.7.9"
+"axios@npm:^1.8.2":
+  version: 1.8.2
+  resolution: "axios@npm:1.8.2"
   dependencies:
     follow-redirects: "npm:^1.15.6"
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 10c0/b7a41e24b59fee5f0f26c1fc844b45b17442832eb3a0fb42dd4f1430eb4abc571fe168e67913e8a1d91c993232bd1d1ab03e20e4d1fee8c6147649b576fc1b0b
+  checksum: 10c0/d8c2969e4642dc6d39555ac58effe06c051ba7aac2bd40cad7a9011c019fb2f16ee011c5a6906cb25b8a4f87258c359314eb981f852e60ad445ecaeb793c7aa2
   languageName: node
   linkType: hard
 
@@ -7421,8 +7421,8 @@ __metadata:
   linkType: hard
 
 "elliptic@npm:^6.5.3, elliptic@npm:^6.5.4":
-  version: 6.6.0
-  resolution: "elliptic@npm:6.6.0"
+  version: 6.6.1
+  resolution: "elliptic@npm:6.6.1"
   dependencies:
     bn.js: "npm:^4.11.9"
     brorand: "npm:^1.1.0"
@@ -7431,7 +7431,7 @@ __metadata:
     inherits: "npm:^2.0.4"
     minimalistic-assert: "npm:^1.0.1"
     minimalistic-crypto-utils: "npm:^1.0.1"
-  checksum: 10c0/42eb3492e218017bf8923a5d14a86f414952f2f771361805b3ae9f380923b5da53e203d0d92be95cb0a248858a78db7db5934a346e268abb757e6fe561d401c9
+  checksum: 10c0/8b24ef782eec8b472053793ea1e91ae6bee41afffdfcb78a81c0a53b191e715cbe1292aa07165958a9bbe675bd0955142560b1a007ffce7d6c765bcaf951a867
   languageName: node
   linkType: hard
 
@@ -13222,7 +13222,7 @@ __metadata:
     "@types/react-currency-format": "npm:^1.0.4"
     "@types/react-router-dom": "npm:~5.3.3"
     "@vitejs/plugin-react": "npm:^4.2.1"
-    axios: "npm:^1.7.9"
+    axios: "npm:^1.8.2"
     classnames: "npm:^2.5.1"
     identity-obj-proxy: "npm:^3.0.0"
     jest: "npm:^29.7.0"
