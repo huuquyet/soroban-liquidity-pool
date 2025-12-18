@@ -68,7 +68,7 @@
     "jest-canvas-mock": "^2.5.2",
     "jest-environment-jsdom": "^29.7.0",
     "msw": "~2.2.3",
-    "storybook": "^7.6.17",
+    "storybook": "^7.6.21",
     "ts-jest": "^29.1.2",
     "typescript": "^5.4.2",
     "vite": "^5.4.21",
